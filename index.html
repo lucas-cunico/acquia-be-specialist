@@ -244,10 +244,25 @@
   .rev .why { color: var(--ink-2); }
   .rev .why b { color: var(--ink); }
 
-  .langsw { display: flex; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
-  .langsw a { flex: 1; text-align: center; background: var(--surface); padding: 0.35rem 0.5rem; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; color: var(--ink-3); }
-  .langsw a:hover { background: var(--surface-2); color: var(--ink); }
-  .langsw a[aria-current="true"] { background: var(--accent-soft); color: var(--accent); }
+  .langbox { display: flex; flex-direction: column; gap: 0.4rem; }
+  .langbox .caption { display: flex; align-items: center; gap: 0.35rem; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+  .langbox .caption svg { width: 0.95rem; height: 0.95rem; flex: none; stroke: currentColor; fill: none; stroke-width: 1.6; }
+  .langsw { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 6px; }
+  .langsw a {
+    display: flex; flex-direction: column; align-items: center; gap: 0.05rem;
+    padding: 0.4rem 0.35rem; border-radius: 4px; text-decoration: none;
+    color: var(--ink-3); background: transparent; border: 1px solid transparent;
+    transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+  }
+  .langsw a .code { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.05em; line-height: 1.2; }
+  .langsw a .name { font-size: 0.66rem; line-height: 1.2; opacity: 0.85; }
+  .langsw a:hover { background: var(--surface); color: var(--ink); border-color: var(--rule); }
+  .langsw a[aria-current="true"] {
+    background: var(--accent); color: var(--on-accent); border-color: var(--accent);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  }
+  .langsw a[aria-current="true"] .name { opacity: 0.9; }
+  @media (prefers-reduced-motion: reduce) { .langsw a { transition: none; } }
 
   footer { max-width: 45rem; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--ink-3); display: flex; flex-direction: column; gap: 0.5rem; }
 </style>
@@ -256,9 +271,19 @@
 
 <nav class="side" aria-label="Módulos">
   <div class="brand">Acquia Back End<br>Specialist</div>
-  <div class="langsw" role="group" aria-label="Idioma">
-    <a href="./" aria-current="true">PT-BR</a>
-    <a href="en/">EN</a>
+  <div class="langbox">
+    <span class="caption" id="langCaption">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+      Idioma · Language
+    </span>
+    <div class="langsw" role="group" aria-labelledby="langCaption">
+      <a href="./" aria-current="true" hreflang="pt-BR" lang="pt-BR" title="Página em português do Brasil">
+        <span class="code">PT-BR</span><span class="name">Português</span>
+      </a>
+      <a href="en/" hreflang="en" lang="en" title="Switch to the English version">
+        <span class="code">EN</span><span class="name">English</span>
+      </a>
+    </div>
   </div>
   <ol id="nav"></ol>
   <button class="btn ghost" id="reset" style="font-size:0.78rem;padding:0.35rem 0.7rem">Zerar progresso</button>
