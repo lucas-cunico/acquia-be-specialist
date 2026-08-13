@@ -1,0 +1,2761 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trilha Acquia Back End Specialist</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+<style>:root{color-scheme:light dark}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style>
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F5F7F9;
+    --surface: #FFFFFF;
+    --surface-2: #EBEFF4;
+    --surface-3: #E1E8EF;
+    --ink: #141A21;
+    --ink-2: #43505E;
+    --ink-3: #6D7C8B;
+    --rule: #D6DEE6;
+    --accent: #1B6FA8;
+    --accent-2: #12557F;
+    --accent-soft: #DDEAF4;
+    --on-accent: #FFFFFF;
+    --amber: #8A5E12;
+    --amber-soft: #F7EDD9;
+    --green: #276B45;
+    --green-soft: #DCEEE4;
+    --red: #9C3535;
+    --red-soft: #F7E2E2;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0F1319;
+      --surface: #161C24;
+      --surface-2: #1E2631;
+      --surface-3: #26303C;
+      --ink: #E7EDF3;
+      --ink-2: #B0BDC9;
+      --ink-3: #7F8E9C;
+      --rule: #2B353F;
+      --accent: #5FAEDD;
+      --accent-2: #8CC8EC;
+      --accent-soft: #162936;
+      --on-accent: #0F1319;
+      --amber: #D9A754;
+      --amber-soft: #2C2517;
+      --green: #6FBF8F;
+      --green-soft: #16281E;
+      --red: #E08585;
+      --red-soft: #2B1A1A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0F1319;
+    --surface: #161C24;
+    --surface-2: #1E2631;
+    --surface-3: #26303C;
+    --ink: #E7EDF3;
+    --ink-2: #B0BDC9;
+    --ink-3: #7F8E9C;
+    --rule: #2B353F;
+    --accent: #5FAEDD;
+    --accent-2: #8CC8EC;
+    --accent-soft: #162936;
+    --on-accent: #0F1319;
+    --amber: #D9A754;
+    --amber-soft: #2C2517;
+    --green: #6FBF8F;
+    --green-soft: #16281E;
+    --red: #E08585;
+    --red-soft: #2B1A1A;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.62;
+    margin: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.16; margin: 0; }
+  h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); letter-spacing: -0.01em; }
+  h3 { font-size: 1.1rem; font-family: var(--font-body); font-weight: 660; letter-spacing: -0.005em; }
+  h4 { font-size: 0.95rem; font-weight: 650; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .eyebrow {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent);
+  }
+
+  code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface-2); padding: 0.12em 0.36em; border-radius: 2px; }
+  pre {
+    margin: 0; background: var(--surface-2); border: 1px solid var(--rule);
+    border-radius: 3px; padding: 0.9rem 1rem; overflow-x: auto;
+    font-size: 0.83rem; line-height: 1.55;
+  }
+  pre code { background: none; padding: 0; font-size: 1em; }
+  pre .c { color: var(--ink-3); font-style: italic; }
+  pre .k { color: var(--accent); }
+
+  /* ---------- shell ---------- */
+  .shell { display: grid; grid-template-columns: 15.5rem minmax(0, 1fr); gap: 2.5rem; max-width: 74rem; margin: 0 auto; padding: 0 1.25rem 6rem; }
+  @media (max-width: 900px) { .shell { grid-template-columns: minmax(0,1fr); gap: 0; } }
+
+  nav.side { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding: 2rem 0; display: flex; flex-direction: column; gap: 1rem; }
+  @media (max-width: 900px) { nav.side { position: static; max-height: none; padding: 1.5rem 0 0; } }
+  nav.side .brand { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.25; }
+  nav.side ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  nav.side a {
+    display: grid; grid-template-columns: 2.1rem 1fr; gap: 0.6rem; align-items: center;
+    background: var(--surface); padding: 0.6rem 0.7rem; text-decoration: none; color: var(--ink); font-size: 0.87rem; line-height: 1.3;
+  }
+  nav.side a:hover { background: var(--surface-2); }
+  nav.side a.active { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+  nav.side .mlabel { display: flex; flex-direction: column; }
+  nav.side .mlabel small { color: var(--ink-3); font-size: 0.72rem; }
+
+  .ring { width: 2.1rem; height: 2.1rem; display: block; }
+  .ring circle { fill: none; stroke-width: 3.5; }
+  .ring .track { stroke: var(--surface-3); }
+  .ring .val { stroke: var(--accent); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dasharray .35s ease; }
+  .ring text { font-family: var(--font-body); font-size: 10px; font-weight: 700; fill: var(--ink-2); text-anchor: middle; }
+
+  main { min-width: 0; padding-top: 2rem; }
+  .col { max-width: 45rem; }
+
+  /* ---------- hero + dashboard ---------- */
+  header.hero { display: flex; flex-direction: column; gap: 0.9rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+  .lede { color: var(--ink-2); max-width: 42rem; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; margin-top: 0.5rem; }
+  .fact { background: var(--surface); padding: 0.7rem 0.85rem; }
+  .fact dt { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+  .fact dd { margin: 0; font-size: 1.05rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+
+  .dash { margin-top: 2.5rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 1.4rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .dash-top { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .ring-lg { width: 5.4rem; height: 5.4rem; flex: none; }
+  .ring-lg circle { stroke-width: 6; }
+  .ring-lg text { font-size: 22px; font-weight: 700; fill: var(--ink); }
+  .dash-msg { flex: 1 1 16rem; display: flex; flex-direction: column; gap: 0.25rem; }
+  .dash-msg h3 { font-size: 1rem; }
+  .dash-msg p { font-size: 0.9rem; color: var(--ink-2); }
+  .badge { align-self: flex-start; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 2px; background: var(--surface-2); color: var(--ink-3); }
+  .badge.on { background: var(--green-soft); color: var(--green); }
+
+  .bars { display: flex; flex-direction: column; gap: 0.55rem; }
+  .barrow { display: grid; grid-template-columns: minmax(6rem, 13rem) 1fr 3.2rem; gap: 0.75rem; align-items: center; font-size: 0.85rem; }
+  .barrow .nm { color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .track2 { height: 7px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .track2 i { display: block; height: 100%; background: var(--accent); border-radius: 4px; transition: width .35s ease; }
+  .barrow .pc { text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+
+  .btn {
+    font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    background: var(--accent); border: 1px solid var(--accent);
+    padding: 0.5rem 1rem; border-radius: 3px;
+  }
+  .btn { color: var(--on-accent); }
+  .btn:hover { background: var(--accent-2); border-color: var(--accent-2); }
+  .btn.ghost { background: none; color: var(--ink-2); border-color: var(--rule); }
+  .btn.ghost:hover { background: var(--surface-2); color: var(--ink); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .btnrow { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+
+  /* ---------- modules ---------- */
+  section.mod { padding-top: 3.5rem; scroll-margin-top: 1rem; }
+  .mod-head { display: flex; flex-direction: column; gap: 0.6rem; padding-bottom: 1.25rem; border-bottom: 2px solid var(--ink); margin-bottom: 1.75rem; }
+  .mod-meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--ink-3); }
+  .mod-meta b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  .block { background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1rem; }
+  .block > p { color: var(--ink-2); }
+  .block > h3 { padding-bottom: 0.15rem; }
+  .block-foot { margin-top: 0.35rem; padding-top: 0.85rem; border-top: 1px dashed var(--rule); display: flex; justify-content: flex-end; }
+  .block h4 { margin-top: 0.35rem; color: var(--ink); }
+  .sub { font-size: 0.82rem; color: var(--ink-3); font-style: italic; }
+  .chk { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--ink-3); cursor: pointer; user-select: none; white-space: nowrap; }
+  .chk input { width: 1rem; height: 1rem; accent-color: var(--accent); cursor: pointer; }
+  .chk:has(input:checked) { color: var(--green); font-weight: 600; }
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 26rem; }
+  th, td { text-align: left; padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; background: var(--surface-2); }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .note { font-size: 0.87rem; background: var(--amber-soft); color: var(--amber); border-left: 3px solid var(--amber); padding: 0.6rem 0.8rem; border-radius: 0 2px 2px 0; }
+  .note b { color: var(--amber); }
+  ul.plain { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem; color: var(--ink-2); font-size: 0.94rem; }
+  ul.plain strong { color: var(--ink); }
+
+  .lab { background: var(--accent-soft); border: 1px solid var(--rule); border-radius: 3px; padding: 1.15rem 1.25rem; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1rem; }
+  .lab h4 { color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.72rem; }
+  .lab p { font-size: 0.94rem; }
+
+  /* ---------- quiz ---------- */
+  .quiz { border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); overflow: hidden; }
+  .quiz-bar { background: var(--surface-2); padding: 0.85rem 1.15rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid var(--rule); }
+  .quiz-bar h4 { font-size: 0.94rem; }
+  .quiz-bar .meta { font-size: 0.8rem; color: var(--ink-3); }
+  .timer { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 3px; background: var(--surface); border: 1px solid var(--rule); }
+  .timer.warn { color: var(--red); border-color: var(--red); }
+  .quiz-body { padding: 1.15rem; display: flex; flex-direction: column; gap: 1rem; }
+  .qtext { font-weight: 550; }
+  .qtext .stem { display: block; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin-bottom: 0.3rem; }
+  .opts { display: flex; flex-direction: column; gap: 0.5rem; }
+  .opt { display: grid; grid-template-columns: 1.1rem 1fr; gap: 0.65rem; align-items: start; padding: 0.7rem 0.85rem; border: 1px solid var(--rule); border-radius: 3px; cursor: pointer; font-size: 0.94rem; background: var(--surface); }
+  .opt:hover { background: var(--surface-2); }
+  .opt input { margin: 0.28rem 0 0; accent-color: var(--accent); }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .nav-q { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+  .dots { display: flex; gap: 4px; flex-wrap: wrap; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-3); display: block; }
+  .dots i.done { background: var(--accent); }
+  .dots i.cur { box-shadow: 0 0 0 2px var(--accent); background: var(--surface); }
+
+  .score { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; padding-bottom: 0.25rem; }
+  .score .big { font-size: 2.4rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; font-family: var(--font-display); }
+  .score.pass .big { color: var(--green); }
+  .score.fail .big { color: var(--red); }
+  .review { display: flex; flex-direction: column; gap: 0.75rem; }
+  .rev { border: 1px solid var(--rule); border-left-width: 3px; border-radius: 0 3px 3px 0; padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.92rem; }
+  .rev.ok { border-left-color: var(--green); background: var(--green-soft); }
+  .rev.no { border-left-color: var(--red); background: var(--red-soft); }
+  .rev .tag { font-size: 0.68rem; letter-spacing: 0.11em; text-transform: uppercase; font-weight: 700; }
+  .rev.ok .tag { color: var(--green); }
+  .rev.no .tag { color: var(--red); }
+  .rev .why { color: var(--ink-2); }
+  .rev .why b { color: var(--ink); }
+
+  footer { max-width: 45rem; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--ink-3); display: flex; flex-direction: column; gap: 0.5rem; }
+</style>
+
+<div class="shell">
+
+<nav class="side" aria-label="Módulos">
+  <div class="brand">Acquia Back End<br>Specialist</div>
+  <ol id="nav"></ol>
+  <button class="btn ghost" id="reset" style="font-size:0.78rem;padding:0.35rem 0.7rem">Zerar progresso</button>
+</nav>
+
+<main>
+
+<header class="hero">
+  <p class="eyebrow">Certificação Drupal 10 / 11</p>
+  <h1>Curso de preparação com simulados</h1>
+  <p class="lede">Seis módulos que cobrem os sete domínios do blueprint oficial, na proporção em que a prova cobra. Cada módulo tem aula escrita, laboratório prático e um simulado cronometrado no mesmo formato da prova. Seu progresso fica salvo neste navegador.</p>
+  <dl class="facts">
+    <div class="fact"><dt>Questões</dt><dd>60</dd></div>
+    <div class="fact"><dt>Duração</dt><dd>120 min</dd></div>
+    <div class="fact"><dt>Aprovação</dt><dd>70%</dd></div>
+    <div class="fact"><dt>Acertos mín.</dt><dd>42</dd></div>
+    <div class="fact"><dt>Preço</dt><dd>US$ 350</dd></div>
+    <div class="fact"><dt>Formato</dt><dd>Proctored</dd></div>
+  </dl>
+</header>
+
+<div class="dash">
+  <div class="dash-top">
+    <svg class="ring ring-lg" viewBox="0 0 40 40" id="ringAll" aria-hidden="true">
+      <circle class="track" cx="20" cy="20" r="16.5"></circle>
+      <circle class="val" cx="20" cy="20" r="16.5" stroke-dasharray="0 104"></circle>
+      <text x="20" y="24">0%</text>
+    </svg>
+    <div class="dash-msg">
+      <h3>Preparo geral</h3>
+      <p id="dashMsg">Comece pelo Módulo 1. Cada bloco estudado e cada simulado feito movem este número.</p>
+      <span class="badge" id="readyBadge">Ainda não pronto para agendar</span>
+    </div>
+  </div>
+  <div class="bars" id="bars"></div>
+  <p style="font-size:0.8rem;color:var(--ink-3)">Cada módulo pesa o quanto os domínios que ele cobre valem na prova. Dentro do módulo: 60% estudo (blocos e lab marcados), 40% melhor nota no simulado.</p>
+</div>
+
+<!-- ============ MÓDULO 1 ============ -->
+<section class="mod" id="m1" data-mod="1">
+  <div class="mod-head">
+    <p class="eyebrow">Módulo 1 · Domínio 1.0 + base do 2.0</p>
+    <h2>Fundamentos OO e o ciclo de request</h2>
+    <div class="mod-meta"><span>Peso na prova <b>16%</b></span><span>≈ <b>10</b> questões</span><span>Estudo <b>8h</b></span></div>
+  </div>
+
+  <article class="block">
+    <h3>PHP orientado a objetos que o Drupal 11 assume</h3>
+    <p class="sub">Por que quase todo código de módulo virou classe, e o que o Drupal espera dessas classes.</p>
+
+    <p>No Drupal 7, um módulo era um monte de funções soltas dentro de um arquivo <code>.module</code>. Do Drupal 8 em diante isso mudou: a maior parte do código virou <strong>classe</strong>, e o Drupal deixou de <em>chamar suas funções</em> para <em>instanciar suas classes</em>. Entender essa inversão é o que torna o resto do curso natural.</p>
+
+    <h4>1. Onde o arquivo mora define o namespace</h4>
+    <p>O Drupal usa autoload PSR-4: ele descobre o arquivo de uma classe a partir do nome dela, sem você declarar nada. A regra é fixa — o diretório <code>src/</code> do seu módulo corresponde ao namespace <code>Drupal\nome_do_modulo</code>, e cada subpasta vira mais um nível.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Arquivo</th><th>Namespace + classe</th></tr></thead>
+      <tbody>
+        <tr><td><code>cert_lab/src/CertLabHelper.php</code></td><td><code>Drupal\cert_lab\CertLabHelper</code></td></tr>
+        <tr><td><code>cert_lab/src/Controller/PaginaController.php</code></td><td><code>Drupal\cert_lab\Controller\PaginaController</code></td></tr>
+        <tr><td><code>cert_lab/src/Plugin/Block/MeuBlock.php</code></td><td><code>Drupal\cert_lab\Plugin\Block\MeuBlock</code></td></tr>
+      </tbody>
+    </table></div>
+    <p>Se o namespace não bate com o caminho, a classe simplesmente "não existe" para o Drupal — erro de <em>class not found</em> sem nenhuma pista melhor. É a causa nº 1 de módulo que não instala.</p>
+
+    <h4>2. Interface é contrato, classe é implementação</h4>
+    <p>Uma <em>interface</em> lista os métodos que alguém promete ter, sem dizer como. Isso importa no Drupal porque o framework quase nunca quer saber <em>qual</em> classe você usou — quer saber se ela cumpre o contrato.</p>
+<pre><code><span class="c">// src/CertLabHelperInterface.php — o contrato</span>
+&lt;?php
+namespace Drupal\cert_lab;
+
+interface CertLabHelperInterface {
+  <span class="c">// só a assinatura. Sem corpo.</span>
+  public function ultimosArtigos(int $limite): array;
+}
+</code></pre>
+<pre><code><span class="c">// src/CertLabHelper.php — a implementação</span>
+&lt;?php
+namespace Drupal\cert_lab;
+
+use Drupal\Core\Session\AccountInterface;
+
+class CertLabHelper implements CertLabHelperInterface {
+
+  <span class="c">// Promoção de propriedade (PHP 8): declara e atribui de uma vez.
+  // Equivale a criar $this-&gt;currentUser e fazer a atribuição no corpo.</span>
+  public function __construct(
+    protected readonly AccountInterface $currentUser,
+  ) {}
+
+  public function ultimosArtigos(int $limite): array {
+    <span class="c">// ...</span>
+    return [];
+  }
+}
+</code></pre>
+
+    <h4>3. A regra de ouro: type hint contra interface</h4>
+    <p>Repare que o construtor pede <code>AccountInterface</code>, não <code>User</code>. Essa escolha aparece em várias questões da prova, então vale entender o motivo em vez de decorar.</p>
+    <ul class="plain">
+      <li><strong>Substituível:</strong> o Drupal pode entregar o usuário logado, um usuário anônimo ou um objeto proxy. Todos cumprem <code>AccountInterface</code>. Se você exigisse <code>User</code>, quebraria com os outros dois.</li>
+      <li><strong>Testável:</strong> em um teste você passa um mock que implementa a interface — não precisa de banco de dados nem de um usuário real.</li>
+      <li><strong>É o padrão do core:</strong> quase todo service do Drupal tem sua interface (<code>EntityTypeManagerInterface</code>, <code>ConfigFactoryInterface</code>, <code>MessengerInterface</code>). O PHPCS com <code>DrupalPractice</code> reclama quando você foge disso.</li>
+    </ul>
+    <p>Como isso aparece na prova: quatro assinaturas de construtor, e a correta é a que recebe a interface.</p>
+<pre><code><span class="c">// ✅ recebe a interface</span>
+public function __construct(AccountInterface $currentUser) {}
+
+<span class="c">// ❌ classe concreta: quebra com usuário anônimo e com o objeto proxy</span>
+public function __construct(User $currentUser) {}
+
+<span class="c">// ❌ não recebe nada e vai buscar: dependência escondida, teste impossível</span>
+public function __construct() {}
+public function algo() { $u = \Drupal::currentUser(); }
+
+<span class="c">// ❌ recebe um array genérico: perde o type hint e o autocomplete</span>
+public function __construct(array $config) {}
+</code></pre>
+
+    <h4>4. Vocabulário que aparece nos enunciados</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Termo</th><th>O que é</th><th>Onde você vê no Drupal</th></tr></thead>
+      <tbody>
+        <tr><td><code>abstract class</code></td><td>Classe incompleta, feita para ser estendida</td><td><code>ControllerBase</code>, <code>FormBase</code>, <code>BlockBase</code></td></tr>
+        <tr><td><code>interface</code></td><td>Só assinaturas. Uma classe pode implementar várias</td><td><code>ContainerInjectionInterface</code>, <code>NodeInterface</code></td></tr>
+        <tr><td><code>trait</code></td><td>Bloco de métodos reutilizável, "copiado" para dentro da classe</td><td><code>StringTranslationTrait</code> (dá o <code>$this-&gt;t()</code>)</td></tr>
+        <tr><td><code>static</code></td><td>Método chamado na classe, não no objeto</td><td><code>create()</code> dos plugins e controllers</td></tr>
+        <tr><td>atributo <code>#[...]</code></td><td>Metadado anexado à classe, lido por reflexão</td><td>Descoberta de plugin no Drupal 11</td></tr>
+      </tbody>
+    </table></div>
+<pre><code>&lt;?php
+namespace Drupal\cert_lab;
+
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+
+class CertLabHelper {
+  use StringTranslationTrait;      <span class="c">// trait: "cola" métodos na classe</span>
+
+  public function rotulo(string $nome): string {
+    <span class="c">// ✅ o trait deu o método t() a esta classe</span>
+    return $this-&gt;t('Olá, @nome', ['@nome' =&gt; $nome]);
+
+    <span class="c">// ❌ concatenação: o tradutor recebe a string quebrada</span>
+    <span class="c">// return $this-&gt;t('Olá, ' . $nome);</span>
+  }
+}
+</code></pre>
+    <div class="note"><b>Sobre <code>$this-&gt;t()</code>:</b> quando sua classe estende uma base do Drupal ou usa <code>StringTranslationTrait</code>, você chama <code>$this-&gt;t('texto')</code> em vez da função global <code>t()</code>. Em arquivos procedurais, <code>t()</code> continua válido. Os dois nunca recebem variável concatenada — sempre placeholder.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m1-b1"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Services e dependency injection</h3>
+    <p class="sub">O conceito mais transversal do Drupal moderno. Ele reaparece em plugin, form, controller e teste.</p>
+
+    <h4>1. O problema que a injeção resolve</h4>
+    <p>Imagine uma classe que precisa saber quem é o usuário logado. A tentação é buscar essa informação lá dentro:</p>
+<pre><code><span class="c">// ❌ a classe vai buscar o que precisa</span>
+class Relatorio {
+  public function gerar() {
+    $user = \Drupal::currentUser();   <span class="c">// dependência escondida</span>
+  }
+}
+</code></pre>
+    <p>Funciona — e é errado por três motivos concretos, não por purismo:</p>
+    <ul class="plain">
+      <li><strong>A dependência fica invisível.</strong> Olhando a assinatura da classe, ninguém sabe que ela precisa do usuário atual. Só descobre lendo o corpo de todos os métodos.</li>
+      <li><strong>O teste fica impossível de isolar.</strong> <code>\Drupal::currentUser()</code> exige um container inicializado. Você não consegue mais escrever um Unit test.</li>
+      <li><strong>Não dá para trocar a implementação.</strong> Um módulo que quisesse decorar esse service não tem por onde entrar.</li>
+    </ul>
+    <p>A alternativa é inverter: a classe <strong>declara</strong> o que precisa e alguém entrega. Isso é dependency injection.</p>
+<pre><code><span class="c">// ✅ a classe recebe o que precisa</span>
+class Relatorio {
+  public function __construct(
+    protected AccountInterface $currentUser,
+  ) {}
+}
+</code></pre>
+
+    <h4>2. Quem entrega: o service container</h4>
+    <p>O <em>container</em> é um catálogo de objetos reutilizáveis do site. Cada entrada tem um nome (o <em>service ID</em>), uma classe, e a lista de outros services que ela precisa receber. O container monta o grafo inteiro sozinho e só instancia o que for realmente usado no request.</p>
+<pre><code><span class="c"># cert_lab.services.yml — na raiz do módulo</span>
+services:
+  cert_lab.helper:                              <span class="c"># service ID: use o prefixo do módulo</span>
+    class: Drupal\cert_lab\CertLabHelper
+    arguments:
+      - '@current_user'                         <span class="c"># @ = outro service</span>
+      - '@entity_type.manager'
+</code></pre>
+    <p>A ordem dos <code>arguments</code> tem que bater exatamente com a ordem dos parâmetros do construtor. Discrepância aí gera um <em>TypeError</em> na hora em que o service é instanciado — não na hora do cache rebuild.</p>
+    <p>Services que você vai reencontrar o curso inteiro:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Service ID</th><th>Para que serve</th></tr></thead>
+      <tbody>
+        <tr><td><code>entity_type.manager</code></td><td>Obter storage e handlers de qualquer entidade</td></tr>
+        <tr><td><code>current_user</code></td><td>Usuário da sessão e suas permissões</td></tr>
+        <tr><td><code>config.factory</code></td><td>Ler e gravar configuração</td></tr>
+        <tr><td><code>logger.factory</code></td><td>Escrever no log do site</td></tr>
+        <tr><td><code>messenger</code></td><td>Mensagens de status na tela</td></tr>
+        <tr><td><code>database</code></td><td>Conexão para queries que não são de entidade</td></tr>
+        <tr><td><code>renderer</code></td><td>Transformar render array em HTML</td></tr>
+        <tr><td><code>cache.default</code></td><td>Bin de cache para dados próprios</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>3. Como uma classe do Drupal recebe a injeção</h4>
+    <p>Um service comum recebe tudo pelo construtor, e pronto. Mas controllers, forms e plugins não são instanciados por você — o Drupal os cria. Para esses, existe um método estático de fábrica: <code>create()</code>.</p>
+<pre><code>&lt;?php
+namespace Drupal\cert_lab\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+class CertLabController extends ControllerBase {
+
+  <span class="c">// 2º: o construtor apenas recebe e guarda</span>
+  public function __construct(
+    protected EntityTypeManagerInterface $entityTypeManager,
+  ) {}
+
+  <span class="c">// 1º: o Drupal chama este método, que puxa do container
+  //     e devolve a instância já montada</span>
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container-&gt;get('entity_type.manager'),
+    );
+  }
+
+  <span class="c">// 3º: os métodos usam a propriedade, nunca \Drupal::</span>
+  public function pagina() {
+    $nodes = $this-&gt;entityTypeManager-&gt;getStorage('node')-&gt;loadMultiple();
+    return ['#markup' =&gt; count($nodes)];
+  }
+}
+</code></pre>
+    <p><code>new static()</code> em vez de <code>new self()</code> é proposital: garante que, se alguém estender sua classe, a subclasse é que será instanciada.</p>
+    <p>O nome do método de fábrica muda um pouco conforme o tipo de classe, mas o padrão é sempre o mesmo:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Tipo de classe</th><th>Interface a implementar</th><th>Assinatura</th></tr></thead>
+      <tbody>
+        <tr><td>Controller, Form</td><td><code>ContainerInjectionInterface</code></td><td><code>create($container)</code></td></tr>
+        <tr><td>Plugin (block, formatter…)</td><td><code>ContainerFactoryPluginInterface</code></td><td><code>create($container, $configuration, $plugin_id, $plugin_definition)</code></td></tr>
+        <tr><td>Service comum</td><td>nenhuma</td><td>só o construtor; o YAML resolve</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>Cai muito:</b> o <code>\Drupal::</code> estático só é aceitável em arquivos procedurais — <code>.module</code>, <code>.install</code>, <code>.theme</code> — onde não existe container disponível para injetar. Em qualquer classe, é injeção. Se uma alternativa usa <code>\Drupal::</code> dentro de uma classe, ela quase sempre é a errada.</div>
+
+    <h4>4. Estender o comportamento de um service existente</h4>
+    <p>Cenário recorrente: "como alterar o comportamento de um service do core sem hackear o core". Três mecanismos, do menos ao mais invasivo.</p>
+
+    <p><strong>Decorator</strong> — seu service embrulha o original. Você intercepta os métodos que quiser e delega o resto. É o caminho preferido, porque o original continua intacto e outro módulo pode decorar por cima do seu.</p>
+<pre><code><span class="c"># cert_lab.services.yml</span>
+services:
+  cert_lab.mail_decorator:
+    class: Drupal\cert_lab\Mail\MailDecorator
+    decorates: plugin.manager.mail          <span class="c"># qual service embrulhar</span>
+    arguments: ['@cert_lab.mail_decorator.inner']   <span class="c"># .inner = o original</span>
+</code></pre>
+<pre><code>&lt;?php
+namespace Drupal\cert_lab\Mail;
+
+use Drupal\Core\Mail\MailManagerInterface;
+
+class MailDecorator implements MailManagerInterface {
+
+  public function __construct(
+    protected MailManagerInterface $inner,   <span class="c">// o service original</span>
+  ) {}
+
+  <span class="c">// o método que você quer mudar</span>
+  public function mail($module, $key, $to, $langcode, $params = [], $reply = NULL, $send = TRUE) {
+    if ($this-&gt;ambienteDeTeste()) {
+      $to = 'qa@empresa.com';               <span class="c">// intercepta</span>
+    }
+    return $this-&gt;inner-&gt;mail($module, $key, $to, $langcode, $params, $reply, $send);
+  }
+
+  <span class="c">// todo o resto simplesmente delega</span>
+  public function getInstance(array $options) {
+    return $this-&gt;inner-&gt;getInstance($options);
+  }
+}
+</code></pre>
+    <p>Repare no nome <code>@cert_lab.mail_decorator.inner</code>: ao compilar o container, o Drupal renomeia o service original com o sufixo <code>.inner</code> e entrega no seu construtor. Você delega para ele em tudo que não quer mudar.</p>
+
+    <p><strong>ServiceProvider</strong> — altera a <em>definição</em> de um service no container. Use quando o decorator não resolve, por exemplo para trocar a classe de um service que não tem interface adequada. O arquivo tem nome e lugar fixos: <code>src/CertLabServiceProvider.php</code>, com a classe nomeada a partir do módulo em CamelCase.</p>
+<pre><code>&lt;?php
+namespace Drupal\cert_lab;
+
+use Drupal\Core\DependencyInjection\ContainerBuilder;
+use Drupal\Core\DependencyInjection\ServiceProviderBase;
+use Symfony\Component\DependencyInjection\Reference;
+
+class CertLabServiceProvider extends ServiceProviderBase {
+
+  public function alter(ContainerBuilder $container) {
+    if ($definicao = $container-&gt;getDefinition('breadcrumb')) {
+      <span class="c">// troca a classe que implementa o service</span>
+      $definicao-&gt;setClass('Drupal\cert_lab\CertLabBreadcrumbBuilder');
+      $definicao-&gt;addArgument(new Reference('entity_type.manager'));
+    }
+  }
+}
+</code></pre>
+
+    <p><strong>Tags</strong> — não substituem nada. Registram seu service em uma coleção que o Drupal já consome, e o core chama todos os inscritos. É assim que event subscribers, breadcrumb builders e param converters se anunciam.</p>
+<pre><code>services:
+  cert_lab.subscriber:
+    class: Drupal\cert_lab\EventSubscriber\CertLabSubscriber
+    tags:
+      - { name: event_subscriber }
+
+  cert_lab.breadcrumb:
+    class: Drupal\cert_lab\CertLabBreadcrumbBuilder
+    tags:
+      <span class="c"># priority maior é consultado primeiro</span>
+      - { name: breadcrumb_builder, priority: 100 }
+</code></pre>
+    <div class="note"><b>Como escolher:</b> quer mudar o comportamento de <em>um</em> service? Decorator. Quer <em>somar</em> uma implementação a uma coleção que o core já percorre? Tag. Só quando nenhum dos dois serve, ServiceProvider.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m1-b2"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Routing: da URL ao controller</h3>
+    <p class="sub">O caminho que um request percorre até virar HTML — e os pontos onde você entra nesse caminho.</p>
+
+    <h4>1. O ciclo de request, em sete passos</h4>
+    <p>Saber esta sequência responde sozinha várias questões de troubleshooting e de performance, porque quase toda pergunta do tipo "por que isso não acontece" é uma pergunta sobre <em>em que passo você tentou intervir</em>.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>#</th><th>Passo</th><th>Onde você pode entrar</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>index.php</code> monta o kernel e o container</td><td>—</td></tr>
+        <tr><td>2</td><td>Page cache responde direto, se for anônimo e houver hit</td><td>Metadados de cache (módulo 5)</td></tr>
+        <tr><td>3</td><td>Evento <code>kernel.request</code></td><td>Event subscriber</td></tr>
+        <tr><td>4</td><td>Router casa o path com uma rota; parâmetros viram objetos</td><td><code>*.routing.yml</code>, param converter</td></tr>
+        <tr><td>5</td><td>Checagem de acesso da rota</td><td><code>_permission</code>, <code>_custom_access</code></td></tr>
+        <tr><td>6</td><td>Controller roda e devolve um render array</td><td>Seu controller</td></tr>
+        <tr><td>7</td><td>Renderer transforma em HTML; evento <code>kernel.response</code></td><td>Preprocess, Twig, event subscriber</td></tr>
+      </tbody>
+    </table></div>
+    <p>Repare no passo 5: o acesso é decidido <em>antes</em> do controller. É por isso que checar permissão dentro do controller é considerado errado — você está intervindo tarde demais.</p>
+
+    <h4>2. Anatomia de uma rota</h4>
+    <p>Uma rota liga um caminho a um callable e a uma regra de acesso. Tudo em <code>cert_lab.routing.yml</code>.</p>
+<pre><code>cert_lab.report:
+  path: '/cert-lab/report/{node}'
+  defaults:
+    _controller: '\Drupal\cert_lab\Controller\CertLabController::report'
+    _title: 'Relatório'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node      <span class="c"># upcasting: {node} chega como objeto Node</span>
+</code></pre>
+    <p>O <em>upcasting</em> de parâmetro é o que transforma o <code>7</code> da URL no objeto <code>Node</code> carregado antes do controller rodar. Ele também traz de brinde o 404 automático quando o ID não existe. Sem ele, o método recebe a string crua e você teria de carregar e validar na mão.</p>
+    <p>O controller recebe o parâmetro pelo <strong>nome</strong>, não pela posição:</p>
+<pre><code>public function report(NodeInterface $node) {   <span class="c">// nome bate com {node}</span>
+  return ['#markup' =&gt; $node-&gt;label()];
+}
+</code></pre>
+
+    <h4>3. Qual chave de acesso usar</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Chave</th><th>Quando</th></tr></thead>
+      <tbody>
+        <tr><td><code>_permission</code></td><td>Acesso depende só de uma permissão nomeada</td></tr>
+        <tr><td><code>_role</code></td><td>Papel específico. Raro e desencorajado</td></tr>
+        <tr><td><code>_entity_access</code></td><td><code>node.view</code>, <code>node.update</code> — delega ao access handler da entidade</td></tr>
+        <tr><td><code>_custom_access</code></td><td>Lógica própria. Método retorna <code>AccessResult</code></td></tr>
+        <tr><td><code>_access: 'TRUE'</code></td><td>Público de verdade. Não é lugar de checar acesso depois no controller</td></tr>
+      </tbody>
+    </table></div>
+<pre><code>requirements:
+  _permission: 'access content'                  <span class="c"># uma permissão</span>
+  _permission: 'ver relatorio+administer nodes'  <span class="c"># + = OU</span>
+  _permission: 'ver relatorio,acessar area'      <span class="c"># , = E</span>
+
+  _entity_access: 'node.update'                  <span class="c"># delega ao handler da entidade</span>
+  _custom_access: '\Drupal\cert_lab\Access\RelatorioAccess::check'
+  _access: 'TRUE'                                <span class="c"># público</span>
+</code></pre>
+    <div class="note"><b>Por quê importa:</b> checar acesso dentro do controller quebra o sistema. O menu link e o router acham que o usuário pode entrar, o link aparece, e o 403 só surge depois do clique.</div>
+
+    <h4>4. Escrevendo um <code>_custom_access</code></h4>
+<pre><code><span class="c"># na rota</span>
+requirements:
+  _custom_access: '\Drupal\cert_lab\Access\RelatorioAccess::check'
+</code></pre>
+<pre><code>public function check(AccountInterface $account, NodeInterface $node) {
+  <span class="c">// AccessResult, nunca TRUE/FALSE cru</span>
+  return AccessResult::allowedIf($node-&gt;getOwnerId() === $account-&gt;id())
+    -&gt;addCacheableDependency($node)          <span class="c">// a decisão depende do node…</span>
+    -&gt;cachePerUser();                        <span class="c">// …e varia por usuário</span>
+}
+</code></pre>
+    <p>Três detalhes que a prova cobra: o retorno é um objeto <code>AccessResult</code> (<code>allowed()</code>, <code>forbidden()</code>, <code>neutral()</code>), a decisão carrega seus próprios metadados de cache, e <code>forbidden()</code> é diferente de <code>neutral()</code> — o primeiro veta mesmo que outro módulo permita, o segundo apenas se abstém.</p>
+
+    <h4>5. Links e URLs em código</h4>
+    <p>Nunca escreva a URL como string. Gere a partir do nome da rota, para que ela continue funcionando se o path mudar:</p>
+<pre><code>$url  = Url::fromRoute('cert_lab.report', ['node' =&gt; 7]);
+$link = Link::createFromRoute($this-&gt;t('Ver relatório'), 'cert_lab.report', ['node' =&gt; 7]);
+
+<span class="c">// URL vinda do usuário: valide, não confie</span>
+$externa = Url::fromUserInput($input);   <span class="c">// rejeita javascript: e afins</span>
+</code></pre>
+    <div class="note"><b>Sintoma comum:</b> rota nova retornando 404. Quase sempre é cache de rota (<code>drush cr</code>) ou indentação errada no YAML. <code>drush route</code> mostra se a rota chegou a ser registrada.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m1-b3"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Composer, patches e atualização de core</h3>
+    <p class="sub">Como o código de terceiros entra no projeto e por que ele nunca é editado à mão.</p>
+
+    <h4>1. O projeto inteiro é um pacote</h4>
+    <p>Drupal moderno é um projeto Composer. O core e todo contrib entram por <code>composer require</code>; <code>vendor/</code> e <code>web/core</code> nunca são editados à mão nem commitados como fonte de verdade.</p>
+<pre><code>composer require drupal/pathauto:^1.12
+composer update drupal/core-* --with-all-dependencies   <span class="c"># atualiza o core</span>
+</code></pre>
+    <p>Dois arquivos governam tudo, e a diferença entre eles cai na prova:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Arquivo</th><th>Contém</th><th>Quem edita</th></tr></thead>
+      <tbody>
+        <tr><td><code>composer.json</code></td><td>O que você <em>pede</em>: <code>^1.12</code>, faixas de versão</td><td>Você (ou o comando <code>require</code>)</td></tr>
+        <tr><td><code>composer.lock</code></td><td>O que foi <em>resolvido</em>: versão exata de cada pacote</td><td>Só o Composer. Mas <strong>vai para o Git</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p>Em produção se roda <code>composer install</code> (respeita o lock, instala o que foi testado), nunca <code>composer update</code> (recalcula versões e pode trazer surpresa).</p>
+
+    <h4>2. Patch: correção que ainda não virou release</h4>
+    <p>Você achou o issue no drupal.org, o patch existe, mas o mantenedor ainda não publicou versão nova. O caminho certo é declarar o patch, com <code>cweagans/composer-patches</code>:</p>
+<pre><code>"extra": {
+  "patches": {
+    "drupal/pathauto": {
+      "#3401234 corrige alias em tradução":
+        "https://www.drupal.org/files/issues/2024-01-01/pathauto-3401234-7.patch"
+    }
+  }
+}
+</code></pre>
+    <p>Assim o patch reaplica sozinho em cada <code>composer install</code> e sobrevive ao próximo update. Editar direto o arquivo em <code>contrib</code> perde a correção silenciosamente — e ninguém descobre até o bug voltar em produção.</p>
+
+    <h4>3. Atualizar o core com segurança</h4>
+    <p>Sequência que a prova espera ver:</p>
+<pre><code>composer update drupal/core-* --with-all-dependencies   <span class="c"># 1. baixa o código</span>
+drush updatedb                                          <span class="c"># 2. roda hook_update_N pendentes</span>
+drush cache:rebuild                                     <span class="c"># 3. reconstrói caches</span>
+drush config:export                                     <span class="c"># 4. captura config que o update mudou</span>
+</code></pre>
+    <p>Atualização de <em>patch release</em> (10.3.4 → 10.3.5) é rotina segura: dentro de um minor, o Drupal não introduz quebra de API. Atualização de <em>minor</em> (10.3 → 10.4) pede leitura das release notes. Atualização de <em>major</em> é projeto, com Upgrade Status e correção de código depreciado.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m1-b4"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Git e testes automatizados: o mínimo cobrado</h3>
+    <p class="sub">Dois assuntos leves em peso, mas que rendem questões fáceis de acertar.</p>
+
+    <h4>1. Git no fluxo de um projeto Drupal</h4>
+    <p>Git aparece em cenários de fluxo: feature branch, rebase vs merge, o que entra no repositório. Regra prática do que <strong>não</strong> se commita: <code>vendor/</code>, <code>web/core</code>, <code>web/modules/contrib</code>, <code>settings.local.php</code>, arquivos de usuário (<code>sites/default/files</code>).</p>
+<pre><code><span class="c"># .gitignore de um projeto Drupal com Composer</span>
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/sites/default/files/
+/web/sites/default/settings.local.php
+.env
+</code></pre>
+    <p>O que <strong>vai</strong> para o repositório: seu código custom, o <code>composer.json</code> e o <code>composer.lock</code>, e o diretório de configuração exportada. É essa combinação que torna o site reprodutível — outra pessoa clona, roda <code>composer install</code> e <code>drush cim</code>, e tem o mesmo site.</p>
+
+    <h4>2. Os quatro tipos de teste</h4>
+    <p>Todos rodam por PHPUnit. A diferença é <em>quanto do Drupal cada um liga</em> — e quanto mais liga, mais lento.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Tipo</th><th>O que sobe</th><th>Use quando</th></tr></thead>
+      <tbody>
+        <tr><td><code>UnitTestCase</code></td><td>Nada. Só PHP</td><td>Lógica pura, dependências mockadas. Rápido</td></tr>
+        <tr><td><code>KernelTestBase</code></td><td>Container + banco</td><td>Service que usa entity storage, config, plugin manager</td></tr>
+        <tr><td><code>BrowserTestBase</code></td><td>Site completo, sem JS</td><td>Fluxo de formulário, permissões, páginas</td></tr>
+        <tr><td><code>WebDriverTestBase</code></td><td>Site + navegador real</td><td>Só quando precisa de JavaScript/AJAX de verdade</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>Padrão da prova:</b> a resposta certa é sempre o teste <em>mais barato</em> que ainda cobre o cenário. Se o cenário menciona entity storage mas não menciona navegador, é Kernel. Se menciona clicar e ver algo aparecer sem recarregar, é WebDriver.</div>
+    <p>Onde os arquivos moram: <code>tests/src/Unit/</code>, <code>tests/src/Kernel/</code>, <code>tests/src/Functional/</code>, <code>tests/src/FunctionalJavascript/</code>. A pasta define o namespace e é assim que o runner encontra cada suíte.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m1-b5"> marcar como estudado</label></div>
+  </article>
+
+  <div class="lab">
+    <h4>Laboratório 1</h4>
+    <p>Crie o módulo <code>cert_lab</code> do zero: <code>cert_lab.info.yml</code>, uma rota com <code>_permission</code>, um controller que injeta <code>entity_type.manager</code> via <code>create()</code>, e um service próprio registrado em <code>cert_lab.services.yml</code> e consumido pelo controller. Instale com <code>drush en cert_lab</code> e abra a rota no navegador.</p>
+    <p style="font-size:0.9rem"><strong>Critério de pronto:</strong> a página renderiza e não existe nenhum <code>\Drupal::</code> dentro de <code>src/</code>.</p>
+    <label class="chk"><input type="checkbox" data-c="m1-lab"> laboratório concluído</label>
+  </div>
+
+  <div class="quiz" data-quiz="1"></div>
+</section>
+
+<!-- ============ MÓDULO 2 ============ -->
+<section class="mod" id="m2" data-mod="2">
+  <div class="mod-head">
+    <p class="eyebrow">Módulo 2 · Domínio 2.0</p>
+    <h2>Entity API e Configuration API</h2>
+    <div class="mod-meta"><span>Peso na prova <b>17%</b></span><span>≈ <b>10</b> questões</span><span>Estudo <b>9h</b></span></div>
+  </div>
+
+  <article class="block">
+    <h3>Content entity vs config entity</h3>
+    <p class="sub">A distinção mais cobrada do domínio mais pesado da prova.</p>
+
+    <h4>1. O que é uma entidade, afinal</h4>
+    <p>Entidade é a abstração que o Drupal usa para qualquer "coisa" armazenada: um artigo, um usuário, um termo de taxonomia, uma imagem. Todas expõem a mesma API — <code>load()</code>, <code>save()</code>, <code>delete()</code>, <code>get()</code>, <code>set()</code> — o que permite escrever código que funciona para qualquer tipo.</p>
+    <p>Três palavras aparecem o tempo todo e são confundidas:</p>
+    <ul class="plain">
+      <li><strong>Entity type</strong> — a categoria: <code>node</code>, <code>user</code>, <code>media</code>.</li>
+      <li><strong>Bundle</strong> — a subdivisão do tipo, com campos próprios: <code>article</code> e <code>page</code> são bundles de <code>node</code>. Nem todo tipo tem bundle (<code>user</code> não tem).</li>
+      <li><strong>Field</strong> — o dado em si. Um campo sempre pertence a um bundle e sempre é uma lista de valores, mesmo quando tem um só.</li>
+    </ul>
+<pre><code>$node-&gt;getEntityTypeId();   <span class="c">// 'node'   → o tipo</span>
+$node-&gt;bundle();            <span class="c">// 'article'→ o bundle</span>
+$node-&gt;id();                <span class="c">// 7</span>
+$node-&gt;label();             <span class="c">// o título</span>
+
+<span class="c">// campo é sempre uma lista: estas três linhas fazem o mesmo</span>
+$node-&gt;get('field_resumo')-&gt;value;
+$node-&gt;field_resumo-&gt;value;
+$node-&gt;get('field_resumo')-&gt;first()-&gt;value;
+
+<span class="c">// campo múltiplo</span>
+foreach ($node-&gt;get('field_tags') as $item) {
+  $termo = $item-&gt;entity;   <span class="c">// entity reference já carrega o objeto</span>
+}
+</code></pre>
+
+    <h4>2. As duas famílias</h4>
+    <p>São dois sistemas de armazenamento diferentes, com propósitos diferentes.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th></th><th>Content entity</th><th>Config entity</th></tr></thead>
+      <tbody>
+        <tr><td>Guarda</td><td>Conteúdo criado no site</td><td>Definições e estrutura</td></tr>
+        <tr><td>Onde vive</td><td>Tabelas próprias no banco</td><td>Config storage, exportável em YAML</td></tr>
+        <tr><td>Fieldable</td><td>Sim</td><td>Não</td></tr>
+        <tr><td>Revisionável / traduzível</td><td>Sim</td><td>Não (config tem override de idioma)</td></tr>
+        <tr><td>Exemplos</td><td>node, user, taxonomy_term, media, comment, file</td><td>node_type, view, image_style, view_mode, field_config, user_role</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>Atalho mental:</b> se você espera que aquilo mude entre dev e produção por <em>trabalho editorial</em>, é content. Se você espera que viaje no deploy junto com o código, é config.</div>
+
+    <h4>3. O par que confunde: node type e node</h4>
+    <p>Um <em>content type</em> chamado "Artigo" é uma <strong>config entity</strong> (<code>node_type</code>): ele define a estrutura, é exportável, e viaja no deploy. Um artigo publicado é uma <strong>content entity</strong> (<code>node</code>): é conteúdo, fica no banco, e não viaja. A mesma lógica vale para o par vocabulário/termo e para o par view/resultado da view.</p>
+    <p>Por isso criar um campo em dev e exportar leva o campo para produção — mas não leva os textos que alguém escreveu nele.</p>
+<pre><code><span class="c">// config entity: carrega por nome de máquina, e é exportável</span>
+$tipo = $this-&gt;entityTypeManager-&gt;getStorage('node_type')-&gt;load('article');
+$tipo-&gt;label();                       <span class="c">// 'Artigo'</span>
+
+<span class="c">// content entity: carrega por ID numérico, e fica no banco</span>
+$node = $this-&gt;entityTypeManager-&gt;getStorage('node')-&gt;load(7);
+$node-&gt;bundle();                      <span class="c">// 'article' — aponta para o config acima</span>
+</code></pre>
+<pre><code><span class="c"># o config entity acima, exportado por drush cex:</span>
+<span class="c"># config/sync/node.type.article.yml</span>
+uuid: 8f3e...
+langcode: pt-br
+status: true
+name: Artigo
+type: article
+new_revision: true
+</code></pre>
+    <p>Não existe arquivo YAML equivalente para o node 7. Conteúdo não se exporta — se migra.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m2-b1"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Carregar e salvar entidades do jeito certo</h3>
+    <p class="sub">O caminho que passa pelo entity type manager, e por que ele existe.</p>
+
+    <h4>1. Storage: a porta de entrada</h4>
+    <p>Você nunca instancia uma entidade com <code>new</code> nem consulta a tabela dela direto. Tudo passa pelo <em>storage handler</em> daquele tipo, que o entity type manager entrega:</p>
+<pre><code>$storage = $this-&gt;entityTypeManager-&gt;getStorage('node');
+
+$node  = $storage-&gt;load(7);
+$nodes = $storage-&gt;loadMultiple([7, 8, 9]);        <span class="c">// UMA query</span>
+$byVal = $storage-&gt;loadByProperties(['type' =&gt; 'article']);
+</code></pre>
+    <p>As funções procedurais antigas — <code>node_load()</code>, <code>node_load_multiple()</code>, <code>entity_load()</code> — foram removidas. Se aparecem numa alternativa, é distrator.</p>
+
+    <h4>2. Criar, alterar e apagar</h4>
+<pre><code><span class="c">// criar</span>
+$node = $storage-&gt;create([
+  'type'  =&gt; 'article',      <span class="c">// o bundle é obrigatório aqui</span>
+  'title' =&gt; 'Meu artigo',
+  'uid'   =&gt; 1,
+  'field_resumo' =&gt; 'texto',
+]);
+$node-&gt;save();                <span class="c">// só agora vai ao banco</span>
+
+<span class="c">// alterar</span>
+$node-&gt;setTitle('Novo título');
+$node-&gt;set('field_resumo', 'outro texto');
+$node-&gt;setPublished();
+$node-&gt;save();
+
+<span class="c">// nova revisão em vez de sobrescrever</span>
+$node-&gt;setNewRevision(TRUE);
+$node-&gt;setRevisionLogMessage('Ajuste de resumo');
+$node-&gt;setRevisionUserId($uid);
+$node-&gt;save();
+
+$node-&gt;delete();
+</code></pre>
+    <p><code>create()</code> só monta o objeto em memória; nada é gravado até o <code>save()</code>. É por isso que dá para preencher campos, rodar validação e só então persistir.</p>
+
+    <h4>3. O erro de performance que a prova mistura aqui</h4>
+<pre><code><span class="c">// ❌ N+1: uma query por iteração</span>
+foreach ($ids as $id) {
+  $nodes[] = $storage-&gt;load($id);
+}
+
+<span class="c">// ✅ uma query para todos</span>
+$nodes = $storage-&gt;loadMultiple($ids);
+</code></pre>
+    <div class="note"><b>Por que <code>loadMultiple()</code> ganha:</b> uma query em vez de N, e a <em>static cache</em> do storage evita recarregar o que já está em memória naquele request. Em uma tela administrativa com 500 itens, a diferença é de segundos.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m2-b2"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>EntityQuery e o <code>accessCheck()</code> obrigatório</h3>
+    <p class="sub">Como consultar entidades sem escrever SQL — e a chamada que virou obrigatória.</p>
+
+    <p>EntityQuery é a forma de perguntar "quais entidades atendem a estas condições". Ela não conhece tabelas: você filtra por <em>campos</em>, e o Drupal traduz para SQL (ou para o que o storage usar).</p>
+<pre><code>$ids = $storage-&gt;getQuery()
+  -&gt;accessCheck(TRUE)              <span class="c">// obrigatório desde o D10: omitir lança exceção</span>
+  -&gt;condition('status', 1)
+  -&gt;condition('type', 'article')
+  -&gt;sort('created', 'DESC')
+  -&gt;range(0, 5)
+  -&gt;execute();                     <span class="c">// retorna IDs, não entidades</span>
+
+$nodes = $storage-&gt;loadMultiple($ids);
+</code></pre>
+    <h4>1. Por que <code>accessCheck()</code> virou obrigatório</h4>
+    <p>Até o Drupal 9, omitir a chamada significava "sem checagem de acesso" — e sites vazavam conteúdo não publicado sem que ninguém percebesse. A partir do Drupal 10 a decisão passou a ser explícita: sem a chamada, exceção.</p>
+    <ul class="plain">
+      <li><code>accessCheck(TRUE)</code> — qualquer listagem que um usuário final vê.</li>
+      <li><code>accessCheck(FALSE)</code> — apenas quando o bypass é intencional: cron, migração, ou tela administrativa que já é protegida pela própria permissão da rota.</li>
+    </ul>
+<pre><code><span class="c">// ❌ sem a chamada: lança exceção, em vez de devolver resultado sem filtro</span>
+$ids = $storage-&gt;getQuery()-&gt;condition('status', 1)-&gt;execute();
+<span class="c">// "Entity queries must explicitly set whether the query
+//  should be access checked or not."</span>
+
+<span class="c">// ✅ listagem que o usuário vê</span>
+$ids = $storage-&gt;getQuery()-&gt;accessCheck(TRUE)-&gt;condition('status', 1)-&gt;execute();
+
+<span class="c">// ✅ bypass deliberado, dentro de um cron que precisa ver tudo</span>
+$ids = $storage-&gt;getQuery()-&gt;accessCheck(FALSE)-&gt;condition('changed', $ontem, '&lt;')-&gt;execute();
+</code></pre>
+
+    <h4>2. Condições que você vai usar</h4>
+<pre><code>$q-&gt;condition('title', 'Drupal%', 'LIKE');
+$q-&gt;condition('created', $timestamp, '&gt;=');
+$q-&gt;condition('field_tags', [3, 7], 'IN');
+$q-&gt;condition('field_resumo', NULL, 'IS NULL');
+$q-&gt;condition('field_autor.entity.name', 'Ana');   <span class="c">// atravessa a referência</span>
+
+<span class="c">// OR: um grupo de condições</span>
+$grupo = $q-&gt;orConditionGroup()
+  -&gt;condition('type', 'article')
+  -&gt;condition('promote', 1);
+$q-&gt;condition($grupo);
+
+$total = $q-&gt;count()-&gt;execute();   <span class="c">// devolve número, não IDs</span>
+</code></pre>
+    <div class="note"><b>Detalhe cobrado:</b> <code>execute()</code> devolve <em>IDs</em>, não entidades. O passo seguinte é sempre <code>loadMultiple()</code>. Quem espera objetos direto do <code>execute()</code> erra a questão.</div>
+
+    <h4>3. Quando não é entidade: Database API</h4>
+    <p>Para tabelas próprias ou consultas que não mapeiam entidades, use o Database API — sempre com placeholders, nunca com concatenação:</p>
+<pre><code>$this-&gt;database-&gt;select('watchdog', 'w')
+  -&gt;fields('w', ['wid', 'message'])
+  -&gt;condition('type', $userInput)   <span class="c">// o binding é feito pelo API</span>
+  -&gt;execute();
+
+<span class="c">// query com SQL literal: o placeholder :tipo é substituído com segurança</span>
+$this-&gt;database-&gt;query(
+  'SELECT wid FROM {watchdog} WHERE type = :tipo', [':tipo' =&gt; $userInput]
+);
+</code></pre>
+    <p>As chaves em <code>{watchdog}</code> aplicam o prefixo de tabela configurado no site. Concatenar o valor na string é SQL injection — e é o distrator recorrente do domínio de segurança.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m2-b3"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Hooks de CRUD: qual usar</h3>
+    <p class="sub">Onde encaixar código que reage ao ciclo de vida de uma entidade.</p>
+
+    <p>Toda vez que uma entidade é criada, salva ou apagada, o Drupal avisa os módulos por uma sequência de hooks. Escolher o hook certo é escolher o <em>momento</em> certo — e o momento determina se sua alteração persiste ou não.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Hook</th><th>Momento</th><th>Serve para</th></tr></thead>
+      <tbody>
+        <tr><td><code>hook_entity_presave()</code></td><td>Antes da escrita</td><td><strong>Alterar</strong> valores da entidade. A mudança persiste</td></tr>
+        <tr><td><code>hook_entity_insert()</code></td><td>Depois do primeiro save</td><td>Reagir: enviar e-mail, indexar, criar registro relacionado</td></tr>
+        <tr><td><code>hook_entity_update()</code></td><td>Depois de um save subsequente</td><td>Reagir a mudança</td></tr>
+        <tr><td><code>hook_entity_predelete()</code></td><td>Antes de apagar</td><td>Ler dados que vão sumir</td></tr>
+        <tr><td><code>hook_entity_delete()</code></td><td>Depois de apagar</td><td>Limpar dados relacionados</td></tr>
+      </tbody>
+    </table></div>
+<pre><code><span class="c">// cert_lab.module — variante específica do tipo, mais barata que a genérica</span>
+function cert_lab_node_presave(NodeInterface $node) {
+  if ($node-&gt;bundle() === 'article' &amp;&amp; $node-&gt;get('field_resumo')-&gt;isEmpty()) {
+    $node-&gt;set('field_resumo', mb_substr(strip_tags($node-&gt;body-&gt;value), 0, 180));
+  }
+}
+</code></pre>
+    <div class="note"><b>Armadilha:</b> alterar a entidade em <code>insert</code>/<code>update</code> não persiste — exige um segundo <code>save()</code>, que dispara os hooks de novo e vira recursão. Se o cenário diz "alterar antes de salvar", a resposta é <code>presave</code>.</div>
+
+    <h4>Genérico ou específico?</h4>
+    <p>Cada hook tem duas formas. A genérica roda para <em>toda</em> entidade do site; a específica, só para o tipo indicado no nome:</p>
+<pre><code>function cert_lab_entity_presave(EntityInterface $entity) { }  <span class="c">// todas as entidades</span>
+function cert_lab_node_presave(NodeInterface $node) { }        <span class="c">// só nodes</span>
+function cert_lab_user_presave(UserInterface $user) { }        <span class="c">// só usuários</span>
+</code></pre>
+    <p>Prefira a específica quando você só se importa com um tipo: menos chamadas por request, e o type hint já vem certo. Use a genérica quando o comportamento vale para tudo (auditoria, por exemplo) — e aí filtre por <code>$entity-&gt;getEntityTypeId()</code>.</p>
+
+    <h4>Detectar se é criação ou edição</h4>
+<pre><code>function cert_lab_node_presave(NodeInterface $node) {
+  if ($node-&gt;isNew()) {
+    <span class="c">// primeira gravação</span>
+  }
+  <span class="c">// valor anterior, disponível só em update</span>
+  if (!$node-&gt;isNew() &amp;&amp; $node-&gt;original-&gt;label() !== $node-&gt;label()) {
+    <span class="c">// o título mudou</span>
+  }
+}
+</code></pre>
+    <p><code>$entity-&gt;original</code> é a versão como estava no banco antes deste save. É a forma padrão de comparar "antes e depois" e aparece em cenários de "só faça X se o campo mudou".</p>
+
+    <h4>Hooks em classe, no Drupal 11</h4>
+    <p>O Drupal 11 introduziu hooks orientados a objeto: em vez de uma função em <code>.module</code>, um método com atributo.</p>
+<pre><code>class CertLabHooks {
+  #[Hook('node_presave')]
+  public function nodePresave(NodeInterface $node): void { }
+}
+</code></pre>
+    <p>A semântica de <em>qual</em> hook usar é idêntica — o que muda é só onde o código mora. As duas formas convivem, e a prova pode mostrar qualquer uma.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m2-b4"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Configuration API: settings de módulo</h3>
+    <p class="sub">Como um módulo guarda suas configurações e como elas viajam no deploy.</p>
+    <p>Configuração simples fica em um objeto de config, com schema declarado e formulário estendendo <code>ConfigFormBase</code>.</p>
+<pre><code><span class="c"># config/install/cert_lab.settings.yml — valores padrão na instalação</span>
+items_per_page: 5
+
+<span class="c"># config/schema/cert_lab.schema.yml — obrigatório: dá tipo e traduzibilidade</span>
+cert_lab.settings:
+  type: config_object
+  mapping:
+    items_per_page:
+      type: integer
+      label: 'Itens por página'
+</code></pre>
+<pre><code><span class="c">// leitura em código</span>
+$n = $this-&gt;configFactory-&gt;get('cert_lab.settings')-&gt;get('items_per_page');
+
+<span class="c">// escrita (só em formulários de admin / update hooks)</span>
+$this-&gt;configFactory-&gt;getEditable('cert_lab.settings')
+  -&gt;set('items_per_page', 10)-&gt;save();
+</code></pre>
+    <h4>O formulário de settings</h4>
+<pre><code>class CertLabSettingsForm extends ConfigFormBase {
+
+  public function getFormId() { return 'cert_lab_settings'; }
+
+  <span class="c">// declara qual config este form pode gravar</span>
+  protected function getEditableConfigNames() { return ['cert_lab.settings']; }
+
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['items_per_page'] = [
+      '#type' =&gt; 'number',
+      '#title' =&gt; $this-&gt;t('Itens por página'),
+      '#default_value' =&gt; $this-&gt;config('cert_lab.settings')-&gt;get('items_per_page'),
+    ];
+    return parent::buildForm($form, $form_state);   <span class="c">// adiciona o botão Salvar</span>
+  }
+
+  public function submitForm(array &amp;$form, FormStateInterface $form_state) {
+    $this-&gt;config('cert_lab.settings')
+      -&gt;set('items_per_page', $form_state-&gt;getValue('items_per_page'))
+      -&gt;save();
+    parent::submitForm($form, $form_state);
+  }
+}
+</code></pre>
+
+    <h4>O fluxo de deploy da configuração</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Etapa</th><th>Comando</th><th>O que acontece</th></tr></thead>
+      <tbody>
+        <tr><td>Em dev, depois de mexer na UI</td><td><code>drush cex</code></td><td>Config ativa → arquivos YAML</td></tr>
+        <tr><td>Commit</td><td><code>git add config/</code></td><td>A estrutura do site vira código versionado</td></tr>
+        <tr><td>Em produção, no deploy</td><td><code>drush cim</code></td><td>YAML → config ativa</td></tr>
+      </tbody>
+    </table></div>
+    <p>Diferenças legítimas entre ambientes (chave de API, módulos de dev ligados só localmente) não saem por YAML divergente commitado — isso quebraria o import. Saem por:</p>
+    <ul class="plain">
+      <li><strong>Config override</strong> em <code>settings.php</code>: <code>$config['cert_lab.settings']['items_per_page'] = 20;</code>. O valor vence em runtime e não polui a config exportada.</li>
+      <li><strong>Config Split</strong>: conjuntos inteiros de configuração ativados por ambiente. É a resposta quando o cenário fala em "módulos de desenvolvimento só em dev".</li>
+    </ul>
+    <div class="note"><b>Cuidado com <code>getEditable()</code>:</b> ele grava na configuração ativa. Se rodar em um hook de request comum, você acabou de tornar o site não reprodutível pelo config import — o próximo <code>drush cim</code> desfaz a mudança, ou pior, acusa diferença sem explicação.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m2-b5"> marcar como estudado</label></div>
+  </article>
+
+  <div class="lab">
+    <h4>Laboratório 2</h4>
+    <p>No <code>cert_lab</code>: adicione um <code>ConfigFormBase</code> com o campo <em>itens por página</em>, o schema e o default de instalação. Faça o controller do lab 1 listar nodes publicados com <code>getQuery()->accessCheck(TRUE)</code> respeitando esse limite. Depois rode <code>drush cex</code> e leia o YAML gerado.</p>
+    <p style="font-size:0.9rem"><strong>Critério de pronto:</strong> mudar o valor no formulário muda a listagem, e a alteração aparece no <code>drush cex</code>.</p>
+    <label class="chk"><input type="checkbox" data-c="m2-lab"> laboratório concluído</label>
+  </div>
+
+  <div class="quiz" data-quiz="2"></div>
+</section>
+
+<!-- ============ MÓDULO 3 ============ -->
+<section class="mod" id="m3" data-mod="3">
+  <div class="mod-head">
+    <p class="eyebrow">Módulo 3 · Domínio 2.0</p>
+    <h2>Plugins, eventos e Form API</h2>
+    <div class="mod-meta"><span>Peso na prova <b>16%</b></span><span>≈ <b>10</b> questões</span><span>Estudo <b>9h</b></span></div>
+  </div>
+
+  <article class="block">
+    <h3>Hook, plugin ou event subscriber?</h3>
+    <p class="sub">Os três mecanismos de extensão do Drupal, e como escolher entre eles sob pressão.</p>
+
+    <p>Cenário recorrente na prova: "qual a forma correta de implementar X". Não é uma pergunta sobre sintaxe — é sobre reconhecer qual dos três mecanismos o Drupal reservou para aquele tipo de problema.</p>
+
+    <h4>1. Hook — o ponto de extensão anunciado</h4>
+    <p>O core executa uma tarefa e, em pontos escolhidos, pergunta aos módulos: "alguém quer opinar?". Cada módulo que implementou aquele hook é chamado, em ordem de peso. É um mecanismo <em>de mão única</em>: você reage ou altera, mas não decide a arquitetura.</p>
+<pre><code><span class="c">// cert_lab.module — o nome da função É o registro. Não há YAML.</span>
+<span class="c">// padrão: nomedomodulo_nomedohook()</span>
+function cert_lab_node_presave(NodeInterface $node) {
+  <span class="c">// o core chama isto sozinho, toda vez que um node vai ser salvo</span>
+}
+</code></pre>
+
+    <h4>2. Plugin — a peça intercambiável</h4>
+    <p>O Drupal define um contrato ("um bloco sabe se renderizar e se configurar") e permite que qualquer módulo forneça implementações. Depois, <em>alguém escolhe</em> qual usar: o editor escolhe o bloco, o admin escolhe o formatter do campo, a Views escolhe o filtro. Essa escolha é a assinatura do plugin.</p>
+<pre><code><span class="c">// src/Plugin/Block/MeuBlock.php — a pasta e o atributo fazem o registro</span>
+#[Block(id: "cert_lab_meu", admin_label: new TranslatableMarkup("Meu bloco"))]
+class MeuBlock extends BlockBase {
+  public function build() {
+    return ['#markup' =&gt; 'olá'];
+  }
+}
+<span class="c">// ninguém chama esta classe. Ela vira uma OPÇÃO na tela de blocos,
+// e só roda se um editor escolher colocá-la em uma região.</span>
+</code></pre>
+
+    <h4>3. Event subscriber — a reação a um acontecimento</h4>
+    <p>Herdado do Symfony. Um objeto despacha um evento e quem se inscreveu é notificado, em ordem de prioridade. Diferente do hook, o subscriber recebe um <em>objeto de evento</em> que ele pode inspecionar, alterar e até usar para interromper a propagação.</p>
+<pre><code>class CertLabSubscriber implements EventSubscriberInterface {
+
+  public static function getSubscribedEvents(): array {
+    return [KernelEvents::REQUEST =&gt; ['onRequest', 100]];
+  }
+
+  public function onRequest(RequestEvent $event): void {
+    <span class="c">// o objeto do evento carrega estado e permite responder</span>
+    $event-&gt;getRequest()-&gt;getPathInfo();
+    $event-&gt;setResponse(new RedirectResponse('/outro'));
+    $event-&gt;stopPropagation();     <span class="c">// os de prioridade menor não rodam</span>
+  }
+}
+<span class="c">// + a tag event_subscriber no services.yml, senão nada acontece</span>
+</code></pre>
+
+    <h4>4. A tabela de decisão</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Mecanismo</th><th>Use quando</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Plugin</strong></td><td>Existem N implementações intercambiáveis do mesmo contrato, e alguém escolhe qual usar</td><td>Block, field formatter, field widget, condition, migrate source</td></tr>
+        <tr><td><strong>Hook</strong></td><td>Reagir ou alterar algo que o core já faz, em ponto de extensão previsto</td><td><code>hook_form_alter()</code>, <code>hook_entity_presave()</code></td></tr>
+        <tr><td><strong>Event subscriber</strong></td><td>Reagir a um evento do ciclo de request ou de um serviço que despacha eventos</td><td><code>KernelEvents::REQUEST</code>, config save, migração</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>Regra curta:</b> plugin = <em>algo a ser escolhido</em>. Hook/event = <em>algo a que reagir</em>. Um componente que o editor posiciona e configura é sempre plugin (Block), nunca hook.</div>
+
+    <h4>5. Testando a regra em cenários reais</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Cenário</th><th>Mecanismo</th><th>Por quê</th></tr></thead>
+      <tbody>
+        <tr><td>Adicionar um campo ao formulário de artigo</td><td>Hook</td><td><code>hook_form_alter()</code> é o ponto previsto</td></tr>
+        <tr><td>Componente que o editor posiciona em regiões</td><td>Plugin</td><td>Block: várias implementações, o editor escolhe</td></tr>
+        <tr><td>Mudar como um campo de data é exibido</td><td>Plugin</td><td>Field formatter: o admin escolhe no display</td></tr>
+        <tr><td>Redirecionar usuários de um país</td><td>Event subscriber</td><td>Reage a <code>kernel.request</code>, antes do roteamento</td></tr>
+        <tr><td>Preencher um campo antes de salvar</td><td>Hook</td><td><code>hook_entity_presave()</code></td></tr>
+        <tr><td>Nova fonte de dados para migração</td><td>Plugin</td><td>Migrate source: contrato com N implementações</td></tr>
+        <tr><td>Logar toda vez que uma config muda</td><td>Event subscriber</td><td>O config factory despacha eventos</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m3-b1"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Escrever um plugin: Block</h3>
+    <p class="sub">Um plugin do começo ao fim. O padrão se repete em formatter, widget, condition e migrate.</p>
+
+    <h4>1. As três partes de todo sistema de plugin</h4>
+    <ul class="plain">
+      <li><strong>O tipo de plugin</strong> — definido pelo core: uma interface, uma classe base e um <em>plugin manager</em> (o service <code>plugin.manager.block</code>).</li>
+      <li><strong>A descoberta</strong> — como o manager encontra as implementações. No Drupal 11, por atributo PHP na classe, dentro de <code>src/Plugin/&lt;Tipo&gt;/</code>.</li>
+      <li><strong>A implementação</strong> — a sua classe.</li>
+    </ul>
+<pre><code><span class="c">// o manager é um service. Você pode usá-lo diretamente:</span>
+$manager = \Drupal::service('plugin.manager.block');   <span class="c">// em classe, injete!</span>
+
+$manager-&gt;getDefinitions();              <span class="c">// todos os blocos disponíveis</span>
+$plugin = $manager-&gt;createInstance('cert_lab_meu', ['limite' =&gt; 3]);
+$build  = $plugin-&gt;build();               <span class="c">// usa o contrato, não a classe</span>
+</code></pre>
+    <p>Repare: quem consome não conhece a sua classe. Conhece o ID e o contrato. É isso que torna o plugin intercambiável.</p>
+    <p>Você quase nunca cria um tipo de plugin novo; você fornece implementações para os tipos que já existem. A prova cobra exatamente isso.</p>
+
+    <h4>2. A classe completa</h4>
+    <p>No Drupal 11 a descoberta usa atributos PHP no lugar das anotações em docblock do Drupal 8/9/10.</p>
+<pre><code><span class="c">// src/Plugin/Block/UltimosArtigosBlock.php</span>
+#[Block(
+  id: "cert_lab_ultimos",
+  admin_label: new TranslatableMarkup("Últimos artigos"),
+)]
+class UltimosArtigosBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+  public function blockForm($form, FormStateInterface $form_state) {
+    $form['limite'] = [
+      '#type' =&gt; 'number',
+      '#title' =&gt; $this-&gt;t('Quantos artigos'),
+      '#default_value' =&gt; $this-&gt;configuration['limite'] ?? 5,
+    ];
+    return $form;
+  }
+
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    $this-&gt;configuration['limite'] = $form_state-&gt;getValue('limite');
+  }
+
+  public function build() {
+    return ['#theme' =&gt; 'cert_lab_lista', '#items' =&gt; $this-&gt;carregar()];
+  }
+}
+</code></pre>
+    <p>Cada peça tem seu lugar:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Método</th><th>Responsabilidade</th></tr></thead>
+      <tbody>
+        <tr><td><code>build()</code></td><td>Devolve o render array do bloco. Obrigatório</td></tr>
+        <tr><td><code>blockForm()</code> / <code>blockSubmit()</code></td><td>Configuração <em>por instância</em> — cada colocação do bloco tem a sua</td></tr>
+        <tr><td><code>defaultConfiguration()</code></td><td>Valores iniciais dessa configuração</td></tr>
+        <tr><td><code>blockAccess()</code></td><td>Quem vê o bloco. Retorna <code>AccessResult</code></td></tr>
+        <tr><td><code>getCacheTags()</code> / <code>getCacheContexts()</code></td><td>Metadados de cache do bloco (módulo 5)</td></tr>
+        <tr><td><code>create()</code></td><td>Injeção de dependência</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>3. A injeção em um plugin tem assinatura própria</h4>
+<pre><code>public static function create(
+  ContainerInterface $container,
+  array $configuration,
+  $plugin_id,
+  $plugin_definition,
+) {
+  return new static(
+    $configuration, $plugin_id, $plugin_definition,   <span class="c">// sempre repassados primeiro</span>
+    $container-&gt;get('entity_type.manager'),           <span class="c">// suas dependências depois</span>
+  );
+}
+</code></pre>
+    <p>Os três primeiros argumentos vêm do sistema de plugin e precisam ser repassados ao construtor na mesma ordem, antes das suas dependências. Errar essa ordem é um dos distratores da prova.</p>
+
+    <div class="note"><b>O mesmo esqueleto em outros plugins:</b> um field formatter estende <code>FormatterBase</code> e implementa <code>viewElements()</code>; um widget estende <code>WidgetBase</code> e implementa <code>formElement()</code>; uma condition estende <code>ConditionPluginBase</code> e implementa <code>evaluate()</code>. Atributo na classe, pasta certa, base certa — o padrão nunca muda.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m3-b2"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Event subscribers</h3>
+    <p class="sub">Reagir ao ciclo de request e a eventos despachados por services.</p>
+
+    <p>O padrão vem do Symfony: um objeto <em>despacha</em> um evento, e todos os inscritos são chamados em ordem de prioridade, recebendo o objeto do evento — que eles podem inspecionar e alterar.</p>
+<pre><code>class CertLabSubscriber implements EventSubscriberInterface {
+
+  public static function getSubscribedEvents(): array {
+    <span class="c">// prioridade maior roda antes</span>
+    return [KernelEvents::REQUEST =&gt; ['onRequest', 100]];
+  }
+
+  public function onRequest(RequestEvent $event): void {
+    if (!$event-&gt;isMainRequest()) { return; }   <span class="c">// ignora sub-requests</span>
+    <span class="c">// ...</span>
+  }
+}
+</code></pre>
+<pre><code><span class="c"># cert_lab.services.yml</span>
+services:
+  cert_lab.subscriber:
+    class: Drupal\cert_lab\EventSubscriber\CertLabSubscriber
+    tags:
+      - { name: event_subscriber }   <span class="c"># sem esta tag, nada acontece</span>
+</code></pre>
+    <div class="note"><b>Detalhe cobrado:</b> subscriber sem a tag <code>event_subscriber</code> é registrado como service comum e nunca é chamado. É a causa nº 1 de "meu subscriber não roda".</div>
+
+    <h4>Eventos que aparecem na prova</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Evento</th><th>Quando dispara</th><th>Uso típico</th></tr></thead>
+      <tbody>
+        <tr><td><code>KernelEvents::REQUEST</code></td><td>Antes do roteamento</td><td>Redirecionar, definir contexto</td></tr>
+        <tr><td><code>KernelEvents::RESPONSE</code></td><td>Com a resposta pronta</td><td>Adicionar header</td></tr>
+        <tr><td><code>KernelEvents::EXCEPTION</code></td><td>Erro não tratado</td><td>Página de erro custom</td></tr>
+        <tr><td><code>ConfigEvents::SAVE</code></td><td>Configuração gravada</td><td>Auditoria, invalidar cache próprio</td></tr>
+        <tr><td><code>RoutingEvents::ALTER</code></td><td>Coleção de rotas montada</td><td>Alterar rota de outro módulo</td></tr>
+      </tbody>
+    </table></div>
+    <p>Para redirecionar dentro de um subscriber de request, você define a resposta no próprio evento — não faz <code>header()</code> nem <code>exit</code>:</p>
+<pre><code>$event-&gt;setResponse(new RedirectResponse('/bem-vindo'));
+</code></pre>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m3-b3"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Form API: construir, validar, submeter</h3>
+    <p class="sub">Formulários descritos como array, com validação e submissão em fases separadas.</p>
+
+    <h4>1. O ciclo de vida de um formulário</h4>
+    <p>Entender a ordem explica quase todas as questões de Form API:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>#</th><th>Fase</th><th>O que acontece</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>buildForm()</code></td><td>Monta o array de elementos</td></tr>
+        <tr><td>2</td><td><code>hook_form_alter()</code></td><td>Outros módulos alteram o array</td></tr>
+        <tr><td>3</td><td>Render</td><td>Vira HTML, com token CSRF embutido</td></tr>
+        <tr><td>4</td><td>POST</td><td>O usuário envia</td></tr>
+        <tr><td>5</td><td><code>validateForm()</code></td><td>Valida. Erros aqui interrompem o fluxo</td></tr>
+        <tr><td>6</td><td><code>submitForm()</code></td><td>Só roda se não houve erro</td></tr>
+      </tbody>
+    </table></div>
+    <p>A separação entre 5 e 6 é o ponto: validar dentro do submit é tarde, porque o submit não roda quando há erro — e se você validar lá, já terá gravado algo antes de descobrir o problema.</p>
+
+    <h4>2. Um formulário completo</h4>
+<pre><code>class InscricaoForm extends FormBase {
+
+  public function getFormId() { return 'cert_lab_inscricao'; }
+
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['email'] = [
+      '#type' =&gt; 'email',
+      '#title' =&gt; $this-&gt;t('E-mail'),
+      '#required' =&gt; TRUE,
+    ];
+    $form['tipo'] = ['#type' =&gt; 'select', '#options' =&gt; ['a' =&gt; 'A', 'b' =&gt; 'B']];
+    $form['detalhe'] = [
+      '#type' =&gt; 'textfield',
+      '#states' =&gt; [                                <span class="c">// mostra/esconde no client, sem JS custom</span>
+        'visible' =&gt; [':input[name="tipo"]' =&gt; ['value' =&gt; 'b']],
+      ],
+    ];
+    $form['actions']['submit'] = ['#type' =&gt; 'submit', '#value' =&gt; $this-&gt;t('Enviar')];
+    return $form;
+  }
+
+  public function validateForm(array &amp;$form, FormStateInterface $form_state) {
+    if (!str_ends_with($form_state-&gt;getValue('email'), '@empresa.com')) {
+      $form_state-&gt;setErrorByName('email', $this-&gt;t('Use o e-mail corporativo.'));
+    }
+  }
+
+  public function submitForm(array &amp;$form, FormStateInterface $form_state) {
+    <span class="c">// só roda se validateForm não registrou erro</span>
+  }
+}
+</code></pre>
+    <h4>3. Ler valores e dar retorno ao usuário</h4>
+<pre><code>$form_state-&gt;getValue('email');            <span class="c">// um valor</span>
+$form_state-&gt;getValues();                  <span class="c">// todos</span>
+$form_state-&gt;getValue(['grupo', 'campo']); <span class="c">// aninhado</span>
+
+$form_state-&gt;setErrorByName('email', $this-&gt;t('Mensagem'));  <span class="c">// erro no campo</span>
+$this-&gt;messenger()-&gt;addStatus($this-&gt;t('Salvo.'));           <span class="c">// mensagem de sucesso</span>
+$form_state-&gt;setRedirect('cert_lab.report', ['node' =&gt; 7]);  <span class="c">// para onde ir depois</span>
+</code></pre>
+
+    <h4>4. As três bases de formulário</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Classe base</th><th>Use quando</th><th>Traz de graça</th></tr></thead>
+      <tbody>
+        <tr><td><code>FormBase</code></td><td>Formulário genérico</td><td>Nada além do esqueleto</td></tr>
+        <tr><td><code>ConfigFormBase</code></td><td>Tela de settings de módulo</td><td>Botão salvar e gravação em config</td></tr>
+        <tr><td><code>ConfirmFormBase</code></td><td>"Tem certeza?" antes de agir</td><td>Pergunta, botões e link de cancelar</td></tr>
+      </tbody>
+    </table></div>
+<pre><code><span class="c">// ConfirmFormBase: você só preenche os textos e a ação</span>
+class ApagarRelatorioForm extends ConfirmFormBase {
+
+  public function getFormId() { return 'cert_lab_apagar'; }
+
+  public function getQuestion() {
+    return $this-&gt;t('Apagar este relatório?');
+  }
+
+  public function getCancelUrl() {
+    return new Url('cert_lab.lista');       <span class="c">// para onde vai o "Cancelar"</span>
+  }
+
+  public function getDescription() {
+    return $this-&gt;t('Esta ação não pode ser desfeita.');
+  }
+
+  public function submitForm(array &amp;$form, FormStateInterface $form_state) {
+    <span class="c">// a confirmação já aconteceu; aqui é só executar</span>
+  }
+}
+</code></pre>
+
+    <h4>5. Alterar um formulário de outro módulo</h4>
+<pre><code>function cert_lab_form_node_article_form_alter(&amp;$form, FormStateInterface $form_state) {
+  $form['field_interno']['#access'] = \Drupal::currentUser()
+    -&gt;hasPermission('edit internal field');
+}
+</code></pre>
+    <div class="note"><b>Segurança em form alter:</b> esconder com <code>'#access' =&gt; FALSE</code> impede que o valor seja submetido. Esconder com <code>#attributes</code> ou CSS não impede nada — o campo continua no POST.</div>
+    <p>Existem três formas do hook, da mais genérica à mais específica. Prefira sempre a mais específica que resolve:</p>
+<pre><code>function cert_lab_form_alter(&amp;$form, $form_state, $form_id) { }            <span class="c">// todos os forms</span>
+function cert_lab_form_node_form_alter(&amp;$form, $form_state) { }            <span class="c">// forms de node</span>
+function cert_lab_form_node_article_form_alter(&amp;$form, $form_state) { }    <span class="c">// só artigo</span>
+</code></pre>
+    <p>Para descobrir o form ID de uma tela, inspecione o atributo <code>id</code> do <code>&lt;form&gt;</code> no HTML (com hífens) e troque por underscores.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m3-b4"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>AJAX no Form API</h3>
+    <p class="sub">Atualizar parte do formulário sem recarregar a página, sem escrever JavaScript.</p>
+
+    <p>O caso clássico: escolher um país e a lista de estados se atualizar. O Drupal resolve isso declarativamente — você diz qual elemento dispara, qual método recalcula e qual pedaço da tela será substituído.</p>
+<pre><code>$form['pais'] = [
+  '#type' =&gt; 'select',
+  '#options' =&gt; $paises,
+  '#ajax' =&gt; [
+    'callback' =&gt; '::atualizarEstados',   <span class="c">// método desta classe</span>
+    'wrapper'  =&gt; 'estados-wrapper',      <span class="c">// id do elemento a substituir</span>
+    'event'    =&gt; 'change',
+  ],
+];
+$form['estados'] = [
+  '#type' =&gt; 'select',
+  '#prefix' =&gt; '&lt;div id="estados-wrapper"&gt;',
+  '#suffix' =&gt; '&lt;/div&gt;',
+  '#options' =&gt; $this-&gt;estadosDe($form_state-&gt;getValue('pais')),
+];
+
+public function atualizarEstados(array &amp;$form, FormStateInterface $form_state) {
+  return $form['estados'];   <span class="c">// devolve o pedaço do form, não HTML solto</span>
+}
+</code></pre>
+    <p>O callback devolve um <strong>elemento do formulário</strong> ou um <code>AjaxResponse</code> com comandos. Devolver string de HTML é o distrator típico — e quebra libraries, estados e cacheability.</p>
+
+    <h4>Quando precisar de mais que substituir um elemento</h4>
+<pre><code>$response = new AjaxResponse();
+$response-&gt;addCommand(new ReplaceCommand('#alvo', $render_array));
+$response-&gt;addCommand(new InvokeCommand('#alvo', 'addClass', ['atualizado']));
+$response-&gt;addCommand(new MessageCommand('Atualizado.'));
+return $response;
+</code></pre>
+
+    <h4><code>#ajax</code> ou <code>#states</code>?</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th></th><th><code>#states</code></th><th><code>#ajax</code></th></tr></thead>
+      <tbody>
+        <tr><td>Onde roda</td><td>No navegador</td><td>Ida e volta ao servidor</td></tr>
+        <tr><td>Serve para</td><td>Mostrar, esconder, exigir, desabilitar</td><td>Recalcular conteúdo, opções, preview</td></tr>
+        <tr><td>Custo</td><td>Zero</td><td>Um request por interação</td></tr>
+      </tbody>
+    </table></div>
+    <p>Se a pergunta é só "aparece ou não aparece", é <code>#states</code>. Se o servidor precisa calcular algo novo, é <code>#ajax</code>. Escolher <code>#ajax</code> para visibilidade simples é o erro que a prova monta.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m3-b5"> marcar como estudado</label></div>
+  </article>
+
+  <div class="lab">
+    <h4>Laboratório 3</h4>
+    <p>Três peças no <code>cert_lab</code>: (1) um Block plugin configurável que lista N artigos; (2) um event subscriber em <code>KernelEvents::REQUEST</code> que loga o path, com a tag correta; (3) um <code>hook_form_alter()</code> que adiciona um campo ao formulário de artigo e o valida.</p>
+    <p style="font-size:0.9rem"><strong>Critério de pronto:</strong> o block aparece em <em>Block layout</em> com sua configuração própria, e o subscriber escreve no watchdog.</p>
+    <label class="chk"><input type="checkbox" data-c="m3-lab"> laboratório concluído</label>
+  </div>
+
+  <div class="quiz" data-quiz="3"></div>
+</section>
+
+<!-- ============ MÓDULO 4 ============ -->
+<section class="mod" id="m4" data-mod="4">
+  <div class="mod-head">
+    <p class="eyebrow">Módulo 4 · Domínio 4.0</p>
+    <h2>Render API, Twig e libraries</h2>
+    <div class="mod-meta"><span>Peso na prova <b>10%</b></span><span>≈ <b>6</b> questões</span><span>Estudo <b>6h</b></span></div>
+  </div>
+
+  <article class="block">
+    <h3>Render arrays em vez de HTML</h3>
+    <p class="sub">A estrutura que atravessa todo o backend do Drupal: descrever a saída, não montá-la.</p>
+
+    <h4>1. Por que não devolver HTML direto</h4>
+    <p>Backend Drupal descreve <em>o que</em> renderizar, não monta string. O render array é um array estruturado que só vira HTML no fim do request. Esse adiamento é o que torna possível:</p>
+    <ul class="plain">
+      <li><strong>Alterar</strong> — outro módulo pode mexer na estrutura antes dela virar HTML.</li>
+      <li><strong>Cachear por pedaço</strong> — cada trecho carrega seus próprios metadados de cache.</li>
+      <li><strong>Anexar recursos</strong> — CSS e JS sobem junto com o elemento que precisa deles.</li>
+      <li><strong>Escapar corretamente</strong> — o renderer sabe o que é texto e o que é markup.</li>
+    </ul>
+<pre><code><span class="c">// ❌ string: nada disso é possível depois</span>
+public function pagina() {
+  $html = '&lt;ul&gt;';
+  foreach ($nodes as $node) {
+    $html .= '&lt;li&gt;' . $node-&gt;label() . '&lt;/li&gt;';   <span class="c">// e sem escape!</span>
+  }
+  return ['#markup' =&gt; $html . '&lt;/ul&gt;'];
+}
+
+<span class="c">// ✅ estrutura: alterável, cacheável, escapada, com assets</span>
+public function pagina() {
+  return [
+    '#theme' =&gt; 'item_list',
+    '#items' =&gt; array_map(fn($n) =&gt; $n-&gt;label(), $nodes),
+    '#cache' =&gt; ['tags' =&gt; ['node_list']],
+    '#attached' =&gt; ['library' =&gt; ['cert_lab/lista']],
+  ];
+}
+</code></pre>
+    <p>Se você concatena HTML no controller, perde os quatro de uma vez. É por isso que a alternativa "monta a string e devolve" está sempre errada.</p>
+
+    <h4>2. Anatomia</h4>
+    <p>Chaves com <code>#</code> são propriedades; chaves sem <code>#</code> são elementos filhos, renderizados em ordem de <code>#weight</code>.</p>
+<pre><code>$build = [
+  '#theme' =&gt; 'item_list',
+  '#items' =&gt; $titulos,
+  '#title' =&gt; $this-&gt;t('Artigos'),
+  '#attached' =&gt; ['library' =&gt; ['cert_lab/lista']],
+  '#cache' =&gt; ['tags' =&gt; ['node_list'], 'contexts' =&gt; ['user.roles']],
+];
+</code></pre>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Propriedade</th><th>O que faz</th></tr></thead>
+      <tbody>
+        <tr><td><code>#theme</code></td><td>Renderiza por um theme hook e seu template</td></tr>
+        <tr><td><code>#type</code></td><td>Elemento de render pré-definido (<code>container</code>, <code>link</code>, <code>table</code>)</td></tr>
+        <tr><td><code>#markup</code></td><td>HTML filtrado por <code>Xss::filterAdmin()</code> — só para markup confiável</td></tr>
+        <tr><td><code>#plain_text</code></td><td>Texto integralmente escapado — <strong>use com input de usuário</strong></td></tr>
+        <tr><td><code>#attached</code></td><td>Libraries, drupalSettings, http headers</td></tr>
+        <tr><td><code>#cache</code></td><td>Metadados de cache: tags, contexts, max-age</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>Cai direto:</b> exibir um nome digitado pelo usuário usa <code>#plain_text</code>. <code>#markup</code> ainda deixa passar tags e é vetor de XSS. Não existe <code>#raw</code>.</div>
+
+    <h4>3. Elementos filhos e ordenação</h4>
+<pre><code>$build = [
+  'titulo' =&gt; ['#markup' =&gt; '&lt;h2&gt;Artigos&lt;/h2&gt;', '#weight' =&gt; -10],
+  'lista'  =&gt; ['#theme' =&gt; 'item_list', '#items' =&gt; $itens, '#weight' =&gt; 0],
+  'rodape' =&gt; ['#markup' =&gt; $texto, '#weight' =&gt; 10],
+];
+</code></pre>
+    <p>Peso menor aparece antes. É assim que módulos inserem conteúdo no meio de uma estrutura montada por outro.</p>
+
+    <h4>4. Renderizar na mão (e quando não fazer isso)</h4>
+<pre><code>$html = $this-&gt;renderer-&gt;render($build);
+</code></pre>
+    <p>Chamar o renderer diretamente é raro e perigoso: os metadados de cache do trecho não sobem para a página, e você acaba com conteúdo obsoleto cacheado. O normal é <em>devolver</em> o array e deixar o Drupal renderizar. Se precisar mesmo, existe <code>renderInIsolation()</code> para deixar explícito que o contexto está isolado.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m4-b1"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Theme hooks, preprocess e suggestions</h3>
+    <p class="sub">Da estrutura em PHP até o template Twig — e os pontos onde o tema entra.</p>
+
+    <h4>1. O que <code>#theme</code> dispara</h4>
+    <p>Quando o renderer encontra <code>'#theme' =&gt; 'cert_lab_lista'</code>, ele procura no <em>theme registry</em> o que fazer: qual template usar e quais funções de preprocess chamar antes. Registrar um theme hook é preencher essa entrada do registry.</p>
+<pre><code><span class="c">// cert_lab.module — registra um theme hook novo</span>
+function cert_lab_theme() {
+  return [
+    'cert_lab_lista' =&gt; [
+      'variables' =&gt; ['items' =&gt; [], 'titulo' =&gt; NULL],
+      <span class="c">// procura templates/cert-lab-lista.html.twig</span>
+    ],
+  ];
+}
+
+<span class="c">// prepara variáveis para o template</span>
+function template_preprocess_cert_lab_lista(&amp;$variables) {
+  $variables['total'] = count($variables['items']);
+}
+</code></pre>
+    <p>O template correspondente recebe as variáveis já preparadas:</p>
+<pre><code>{# templates/cert-lab-lista.html.twig #}
+{# nome do arquivo: theme hook com hífens no lugar de underscores #}
+&lt;div class="cert-lab-lista"&gt;
+  &lt;p&gt;{{ total }} itens&lt;/p&gt;
+  &lt;ul&gt;
+    {% for item in items %}
+      &lt;li&gt;{{ item }}&lt;/li&gt;
+    {% endfor %}
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+    <h4>2. A cadeia de preprocess</h4>
+    <p>Várias funções rodam em sequência antes do template, cada uma podendo acrescentar ou ajustar variáveis. A ordem é do mais genérico ao mais específico, e o tema fala por último — por isso o tema sempre pode sobrescrever o módulo:</p>
+<pre><code>template_preprocess_cert_lab_lista()   <span class="c">// 1. o core / quem definiu o hook</span>
+cert_lab_preprocess_cert_lab_lista()   <span class="c">// 2. módulos</span>
+meu_tema_preprocess_cert_lab_lista()   <span class="c">// 3. o tema ativo — último a falar</span>
+</code></pre>
+
+    <h4>3. Variar um template existente</h4>
+    <p>Para <em>variar</em> um template que já existe, o mecanismo é <strong>theme suggestion</strong>, não um theme hook novo:</p>
+<pre><code>function cert_lab_theme_suggestions_node_alter(array &amp;$suggestions, array $variables) {
+  $node = $variables['elements']['#node'];
+  $suggestions[] = 'node__' . $node-&gt;bundle() . '__destaque';
+  <span class="c">// habilita node--article--destaque.html.twig</span>
+}
+</code></pre>
+    <p>Convenção de nomes: no PHP se usa <code>__</code> (dois underscores), no arquivo se usa <code>--</code> (dois hífens). O último item da lista tem a maior prioridade.</p>
+    <div class="note"><b>Para descobrir as suggestions disponíveis:</b> ligue o Twig debug em <code>services.yml</code> de dev. O HTML passa a trazer comentários listando os nomes de template candidatos, com o escolhido marcado com <code>x</code>. É a ferramenta padrão para essa tarefa — e mora em dev, nunca em produção.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m4-b2"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Twig: autoescape e o perigo do <code>|raw</code></h3>
+    <p class="sub">A sintaxe que você precisa reconhecer, e a única regra de segurança que importa aqui.</p>
+
+    <h4>1. As três construções</h4>
+<pre><code>{{ variavel }}      {# imprime, escapando automaticamente #}
+{% if x %}...{% endif %}   {# lógica: if, for, set, block #}
+{# comentário, não vai para o HTML #}
+</code></pre>
+
+    <h4>2. Sintaxe do dia a dia</h4>
+<pre><code>{{ node.label }}                        {# escapado automaticamente #}
+{{ content.field_corpo }}               {# já renderizado e sanitizado pelo text format #}
+{{ 'Olá @nome'|t({'@nome': nome}) }}    {# @ escapa, % escapa+enfatiza, : é para URL #}
+
+{% if items %}
+  {{ attach_library('cert_lab/lista') }}
+  {% for item in items %}
+    &lt;li{{ item.attributes }}&gt;{{ item.label }}&lt;/li&gt;
+  {% endfor %}
+{% endif %}
+</code></pre>
+    <h4>3. Filtros e testes que caem</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Construção</th><th>O que faz</th></tr></thead>
+      <tbody>
+        <tr><td><code>{{ x|t }}</code></td><td>Traduz</td></tr>
+        <tr><td><code>{{ x|default('—') }}</code></td><td>Valor alternativo se vazio</td></tr>
+        <tr><td><code>{{ x|length }}</code>, <code>|upper</code>, <code>|trim</code>, <code>|date('d/m/Y') }}</code></td><td>Transformações comuns</td></tr>
+        <tr><td><code>{{ x|render }}</code></td><td>Força a renderização de um render array</td></tr>
+        <tr><td><code>{{ x|raw }}</code></td><td><strong>Desliga o escape.</strong> Praticamente nunca</td></tr>
+        <tr><td><code>{% if x is empty %}</code></td><td>Teste de vazio (existe também <code>defined</code>, <code>even</code>)</td></tr>
+        <tr><td><code>{{ attributes.addClass('x') }}</code></td><td>Manipula os atributos do elemento</td></tr>
+        <tr><td><code>{% extends %}</code> / <code>{% block %}</code></td><td>Herança de template</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>4. Autoescape: a regra de segurança</h4>
+    <p>O Twig do Drupal escapa toda saída por padrão. <code>|raw</code> desliga esse escape e é a origem clássica de XSS.</p>
+    <p>Se o HTML está "aparecendo como texto" na tela, quase sempre a causa não é falta de <code>|raw</code> — é você estar imprimindo o valor cru do campo em vez do campo renderizado:</p>
+<pre><code>{{ node.body.value }}     {# ❌ o HTML aparece escapado como texto #}
+{{ content.body }}        {# ✅ campo renderizado, já sanitizado pelo text format #}
+</code></pre>
+    <p>Essa distinção — <code>node.campo.value</code> é dado cru, <code>content.campo</code> é a saída renderizada — resolve a maior parte dos problemas em que a resposta errada seria <code>|raw</code>.</p>
+    <div class="note"><b>Placeholders do <code>t()</code>:</b> <code>@var</code> escapa (padrão), <code>%var</code> escapa e envolve em <code>&lt;em&gt;</code>, <code>:var</code> é só para atributo <code>href</code>. Nunca concatene variável dentro da string traduzível — o texto precisa chegar inteiro ao tradutor.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m4-b3"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Libraries, drupalSettings e behaviors</h3>
+    <p class="sub">Como CSS e JavaScript entram na página, e como o JS do Drupal difere do JS comum.</p>
+
+    <h4>1. Library: a unidade de asset</h4>
+    <p>No Drupal você nunca aponta um arquivo JS solto. Declara uma <em>library</em> — um pacote nomeado com seus CSS, seus JS e suas dependências — e depois anexa a library onde ela for necessária. Assim o Drupal resolve ordem, dependências e agregação sozinho.</p>
+<pre><code><span class="c"># cert_lab.libraries.yml</span>
+lista:
+  version: 1.x
+  css:
+    component:
+      css/lista.css: {}
+  js:
+    js/lista.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupalSettings
+</code></pre>
+    <p>O grupo do CSS (<code>base</code>, <code>layout</code>, <code>component</code>, <code>state</code>, <code>theme</code>) define a ordem de carga e segue o padrão SMACSS adotado pelo Drupal. Componentes ficam em <code>component</code>.</p>
+
+    <h4>2. Três formas de anexar</h4>
+<pre><code><span class="c">// PHP: anexa a library e manda dados para o JS</span>
+$build['#attached']['library'][] = 'cert_lab/lista';
+$build['#attached']['drupalSettings']['certLab']['limite'] = 5;
+</code></pre>
+<pre><code>{# Twig: quando o template é que sabe que precisa #}
+{{ attach_library('cert_lab/lista') }}
+</code></pre>
+<pre><code><span class="c"># *.info.yml do tema: carregar em todas as páginas do site</span>
+libraries:
+  - cert_lab/lista
+</code></pre>
+    <p>Prefira sempre anexar ao elemento que precisa: assim o asset só é baixado nas páginas onde o componente aparece. Carregar tudo global é o erro de performance que a prova associa a este tópico.</p>
+
+    <h4>3. O JavaScript do Drupal</h4>
+<pre><code><span class="c">// js/lista.js</span>
+(function (Drupal, once, drupalSettings) {
+  Drupal.behaviors.certLabLista = {
+    attach(context) {
+      // roda de novo a cada conteúdo novo vindo por AJAX;
+      // once() garante uma única inicialização por elemento
+      once('cert-lab-lista', '.cert-lab-lista', context).forEach((el) =&gt; {
+        el.dataset.limite = drupalSettings.certLab.limite;
+      });
+    },
+  };
+})(Drupal, once, drupalSettings);
+</code></pre>
+    <p>Três conceitos, cada um resolvendo um problema específico:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Conceito</th><th>Problema que resolve</th></tr></thead>
+      <tbody>
+        <tr><td><code>Drupal.behaviors</code></td><td>Código precisa rodar também no conteúdo que chega depois, por AJAX</td></tr>
+        <tr><td><code>context</code></td><td>Limita o escopo ao pedaço novo, em vez de varrer a página inteira de novo</td></tr>
+        <tr><td><code>once()</code></td><td>Impede inicializar duas vezes o mesmo elemento</td></tr>
+        <tr><td><code>drupalSettings</code></td><td>Leva dados do PHP ao JS com escape correto</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>Três erros que a prova monta:</b> usar <code>DOMContentLoaded</code> ou <code>$(document).ready()</code> (não pega conteúdo AJAX); esquecer <code>once()</code> (handler duplicado a cada attach); e passar dados por HTML concatenado em vez de <code>drupalSettings</code>. <code>drupal_add_js()</code> não existe mais.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m4-b4"> marcar como estudado</label></div>
+  </article>
+
+  <div class="lab">
+    <h4>Laboratório 4</h4>
+    <p>Dê ao block do lab 3 um theme hook próprio com template Twig, um preprocess que calcula o total, uma library com CSS e JS, e um <code>Drupal.behaviors</code> com <code>once()</code> que lê um valor vindo de <code>drupalSettings</code>. Depois adicione uma theme suggestion por bundle.</p>
+    <p style="font-size:0.9rem"><strong>Critério de pronto:</strong> o CSS/JS só carrega nas páginas onde o block aparece, e o console não acusa dupla inicialização.</p>
+    <label class="chk"><input type="checkbox" data-c="m4-lab"> laboratório concluído</label>
+  </div>
+
+  <div class="quiz" data-quiz="4"></div>
+</section>
+
+<!-- ============ MÓDULO 5 ============ -->
+<section class="mod" id="m5" data-mod="5">
+  <div class="mod-head">
+    <p class="eyebrow">Módulo 5 · Domínios 5.0 e 6.0</p>
+    <h2>Cache e segurança</h2>
+    <div class="mod-meta"><span>Peso na prova <b>27%</b></span><span>≈ <b>16</b> questões</span><span>Estudo <b>10h</b></span></div>
+  </div>
+
+  <article class="block">
+    <h3>Tags, contexts e max-age</h3>
+    <p class="sub">O assunto mais errado por quem reprova. Vale a pena entender de verdade, não decorar.</p>
+
+    <h4>1. O problema do cache, em uma frase</h4>
+    <p>Guardar o resultado pronto é fácil. Difícil é saber <em>quando jogar fora</em> e <em>quantas versões diferentes guardar</em>. O Drupal responde essas duas perguntas com três metadados, e cada um responde uma pergunta distinta. Confundi-los é o que gera tanto conteúdo obsoleto quanto site lento.</p>
+
+    <h4>2. Os três metadados</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Metadado</th><th>Pergunta que responde</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>tags</strong></td><td>De quais <em>dados</em> isto depende? Quando eles mudam, invalide</td><td><code>node:7</code>, <code>node_list</code>, <code>config:system.site</code>, <code>user:3</code></td></tr>
+        <tr><td><strong>contexts</strong></td><td>Por qual <em>dimensão da request</em> isto varia? Guarde uma versão por variação</td><td><code>user.roles</code>, <code>user</code>, <code>url.path</code>, <code>url.query_args</code>, <code>languages</code>, <code>theme</code></td></tr>
+        <tr><td><strong>max-age</strong></td><td>Por quanto <em>tempo</em> continua válido?</td><td><code>Cache::PERMANENT</code>, <code>3600</code>, <code>0</code></td></tr>
+      </tbody>
+    </table></div>
+<pre><code>$build['#cache'] = [
+  'tags'     =&gt; ['node_list'],       <span class="c">// invalida em qualquer save/delete de node</span>
+  'contexts' =&gt; ['user.roles'],      <span class="c">// uma variação por conjunto de papéis</span>
+  'max-age'  =&gt; Cache::PERMANENT,
+];
+</code></pre>
+    <div class="note"><b>Armadilha central:</b> <code>'max-age' =&gt; 0</code> "resolve" qualquer problema de conteúdo desatualizado — e destrói a performance. Quando o cenário diz que uma listagem não atualiza ao publicar conteúdo novo, a resposta certa é a <em>cache tag</em> <code>node_list</code>, não desligar o cache.</div>
+    <p>Prefira <code>user.roles</code> a <code>user</code>: variar por usuário cria uma entrada de cache por pessoa; variar por papel cria três ou quatro no site inteiro.</p>
+
+    <h4>3. Tags: as que você vai usar</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Tag</th><th>Invalidada quando</th></tr></thead>
+      <tbody>
+        <tr><td><code>node:7</code></td><td>Aquele node específico é salvo ou apagado</td></tr>
+        <tr><td><code>node_list</code></td><td><em>Qualquer</em> node é salvo ou apagado</td></tr>
+        <tr><td><code>node_list:article</code></td><td>Qualquer node daquele bundle muda</td></tr>
+        <tr><td><code>user:3</code></td><td>Aquele usuário é alterado</td></tr>
+        <tr><td><code>config:cert_lab.settings</code></td><td>Aquela configuração é salva</td></tr>
+        <tr><td><code>taxonomy_term_list</code></td><td>Qualquer termo muda</td></tr>
+      </tbody>
+    </table></div>
+    <p>Você raramente precisa escrever a tag na mão: <code>$node-&gt;getCacheTags()</code> devolve <code>['node:7']</code>, e o padrão para listagens é <code>$storage-&gt;getEntityType()-&gt;getListCacheTags()</code>.</p>
+<pre><code><span class="c">// invalidar manualmente uma tag própria (raro, mas cai)</span>
+Cache::invalidateTags(['cert_lab:relatorio']);
+</code></pre>
+
+    <h4>4. Como decidir, na prova e na vida</h4>
+    <p>Faça as três perguntas nesta ordem:</p>
+    <ul class="plain">
+      <li><strong>"De que dados isso depende?"</strong> → cada resposta vira uma <em>tag</em>.</li>
+      <li><strong>"Duas pessoas veriam coisas diferentes? Por quê?"</strong> → cada "por quê" vira um <em>context</em>.</li>
+      <li><strong>"Isso expira sozinho com o tempo?"</strong> → só então <em>max-age</em>. Quase sempre a resposta é não, e fica <code>Cache::PERMANENT</code>.</li>
+    </ul>
+    <p>Aplicando a um caso concreto — um bloco que lista os 5 artigos mais recentes, com o texto do rodapé vindo das configurações do site, e um aviso extra visível só para editores:</p>
+<pre><code>$build['#cache'] = [
+  <span class="c">// P1: depende de quais dados?
+  //     → da lista de nodes, e da config do site</span>
+  'tags' =&gt; ['node_list:article', 'config:system.site'],
+
+  <span class="c">// P2: duas pessoas veriam coisas diferentes? Sim — o editor vê o aviso.
+  //     → varia por papel (não por usuário: seriam variações demais)</span>
+  'contexts' =&gt; ['user.roles'],
+
+  <span class="c">// P3: expira com o tempo? Não. As tags dão conta da invalidação.</span>
+  'max-age' =&gt; Cache::PERMANENT,
+];
+</code></pre>
+    <p>Se em vez disso o bloco mostrasse uma cotação vinda de uma API externa, aí sim entraria <code>'max-age' =&gt; 900</code>: nenhuma tag do Drupal sabe quando a cotação mudou, e o tempo é a única resposta possível.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m5-b1"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Bubbling e dependências de cache</h3>
+    <p class="sub">Por que declarar no componente basta, e como declarar sem esquecer nada.</p>
+    <p>Metadados de cache <em>sobem</em>: o que você declara em um pedaço do render array se propaga para o elemento pai e daí para a página. Por isso declarar corretamente no componente basta — você não precisa mexer na página.</p>
+<pre><code><span class="c">// forma manual</span>
+$build['#cache']['tags'] = Cache::mergeTags(
+  $build['#cache']['tags'] ?? [], $node-&gt;getCacheTags()
+);
+
+<span class="c">// forma preferida: a entidade sabe declarar suas próprias dependências</span>
+$meta = CacheableMetadata::createFromRenderArray($build);
+$meta-&gt;addCacheableDependency($node);      <span class="c">// tags + contexts + max-age dela</span>
+$meta-&gt;addCacheableDependency($config);
+$meta-&gt;applyTo($build);
+</code></pre>
+    <p>Qualquer objeto que implemente <code>CacheableDependencyInterface</code> — entidades, config, resultados de acesso — pode ser passado a <code>addCacheableDependency()</code>. É a resposta preferida em cenários de "como declarar a dependência corretamente".</p>
+    <p>A regra de composição do bubbling é conservadora, e faz sentido: o pai fica com a <strong>união</strong> das tags e dos contexts dos filhos, e com o <strong>menor</strong> max-age entre eles. Basta um filho declarar <code>max-age: 0</code> para a página inteira virar não-cacheável — é assim que um componente mal escrito derruba a performance do site todo.</p>
+
+    <h4>Como verificar na prática</h4>
+<pre><code>curl -I https://site.test/pagina | grep -i x-drupal-cache
+
+X-Drupal-Cache: HIT              <span class="c"># page cache (anônimo)</span>
+X-Drupal-Dynamic-Cache: MISS     <span class="c"># dynamic page cache</span>
+X-Drupal-Cache-Tags: node:7 node_list config:system.site
+X-Drupal-Cache-Contexts: languages:language_interface theme user.roles
+</code></pre>
+    <p>Se a tag que você espera não está no header, ela não subiu — e a invalidação nunca vai acontecer. É o teste de uma linha para qualquer questão de "por que não atualiza".</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m5-b2"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Lazy builders, placeholders e as camadas de cache</h3>
+    <p class="sub">Como isolar o trecho dinâmico para não sacrificar a página inteira.</p>
+    <p>Quando um pedaço pequeno e muito dinâmico (o "olá, fulano", o carrinho) obriga a página inteira a variar por usuário, a saída é isolá-lo em um <em>placeholder</em> renderizado à parte.</p>
+<pre><code>$build['saudacao'] = [
+  '#lazy_builder' =&gt; ['cert_lab.lazy:saudacao', [$uid]],  <span class="c">// só argumentos escalares</span>
+  '#create_placeholder' =&gt; TRUE,
+];
+</code></pre>
+    <p>O service <code>cert_lab.lazy</code> tem um método <code>saudacao($uid)</code> que devolve o render array daquele trecho. Duas exigências que a prova cobra: os argumentos precisam ser <strong>escalares</strong> (não dá para passar um objeto Node), e o método precisa declarar <code>trustedCallbacks()</code> para o Drupal aceitar chamá-lo.</p>
+    <p>Assim o resto da página fica cacheável, e o BigPipe entrega o pedaço dinâmico depois, em streaming.</p>
+
+    <h4>Outras alavancas de performance em código</h4>
+    <ul class="plain">
+      <li><strong>Cache próprio</strong> para resultados caros: <code>$this-&gt;cache-&gt;set($cid, $dados, Cache::PERMANENT, $tags)</code> e <code>get()</code> antes de recalcular.</li>
+      <li><strong>Queue API</strong> para trabalho pesado: em vez de processar 5.000 itens no request, enfileire e deixe o cron consumir.</li>
+      <li><strong>Batch API</strong> quando o usuário precisa ver progresso numa operação longa iniciada na UI.</li>
+      <li><strong>Evitar carregar entidade inteira</strong> quando só o ID interessa: <code>getQuery()</code> já devolve IDs.</li>
+    </ul>
+<pre><code><span class="c">// cache próprio para um cálculo caro</span>
+$cid = 'cert_lab:relatorio:' . $ano;
+
+if ($item = $this-&gt;cache-&gt;get($cid)) {
+  return $item-&gt;data;                       <span class="c">// hit: nem calcula</span>
+}
+
+$dados = $this-&gt;calcularRelatorioPesado($ano);
+$this-&gt;cache-&gt;set($cid, $dados, Cache::PERMANENT, ['node_list']);
+return $dados;
+</code></pre>
+<pre><code><span class="c">// trabalho pesado: enfileira em vez de processar no request</span>
+$queue = $this-&gt;queueFactory-&gt;get('cert_lab_reindex');
+foreach ($ids as $id) {
+  $queue-&gt;createItem(['nid' =&gt; $id]);      <span class="c">// o cron consome depois</span>
+}
+</code></pre>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Camada</th><th>Atende</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr><td>Internal Page Cache</td><td>Apenas anônimos</td><td>Página inteira. Mais rápida</td></tr>
+        <tr><td>Dynamic Page Cache</td><td>Anônimos e autenticados</td><td>Cacheia a página com buracos nos placeholders</td></tr>
+        <tr><td>Render cache</td><td>Todos</td><td>Por elemento, governado por <code>#cache</code></td></tr>
+        <tr><td>BigPipe</td><td>Autenticados</td><td>Envia os placeholders em streaming</td></tr>
+      </tbody>
+    </table></div>
+    <p>Outros pontos de configuração cobrados: agregação de CSS/JS ligada em produção, <em>Twig debug</em> e cache de render <strong>desligados</strong> só em dev, e cron rodando fora do request do visitante.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m5-b3"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Sanitização: escapar na saída, não na entrada</h3>
+    <p class="sub">O princípio que organiza todo o domínio de segurança do Drupal.</p>
+
+    <h4>1. Por que não sanitizar na entrada</h4>
+    <p>Sanitizar ao gravar parece mais simples, e é errado: você não sabe, na hora de gravar, se aquele dado vai sair em HTML, dentro de um atributo, em um e-mail em texto puro, em JSON ou em um CSV. Cada destino exige um escape diferente. Sanitizar cedo destrói o dado original e ainda protege o destino errado.</p>
+<pre><code><span class="c">// ❌ escapa na entrada: o dado fica corrompido para sempre</span>
+$node-&gt;set('field_nome', Html::escape($input));   <span class="c">// grava "Jo&amp;amp;#039;ão"</span>
+$node-&gt;save();
+<span class="c">// o e-mail em texto puro vai mostrar a entidade HTML crua,
+// o CSV idem, e um segundo escape na saída duplica tudo</span>
+
+<span class="c">// ✅ grava como veio</span>
+$node-&gt;set('field_nome', $input);                 <span class="c">// "Jo'ão"</span>
+$node-&gt;save();
+
+<span class="c">// ...e escapa conforme o destino, na hora de exibir</span>
+$build['nome'] = ['#plain_text' =&gt; $node-&gt;field_nome-&gt;value];   <span class="c">// HTML</span>
+$assunto = $node-&gt;field_nome-&gt;value;                            <span class="c">// e-mail: cru</span>
+</code></pre>
+    <p>Princípio do Drupal: <strong>guarde o dado como veio, escape no momento de exibir</strong>, de acordo com o contexto de saída.</p>
+
+    <h4>2. A ferramenta por contexto</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Contexto</th><th>Ferramenta</th></tr></thead>
+      <tbody>
+        <tr><td>Texto em render array</td><td><code>'#plain_text'</code></td></tr>
+        <tr><td>Texto em Twig</td><td>Autoescape (não faça nada)</td></tr>
+        <tr><td>String em PHP</td><td><code>Html::escape()</code></td></tr>
+        <tr><td>HTML que precisa manter algumas tags</td><td><code>Xss::filter()</code> / <code>Xss::filterAdmin()</code></td></tr>
+        <tr><td>Valor em query SQL</td><td>Placeholder do Database API</td></tr>
+        <tr><td>URL vinda do usuário</td><td><code>Url::fromUserInput()</code> — rejeita <code>javascript:</code></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>Distrator clássico:</b> <code>htmlspecialchars()</code> antes de concatenar em SQL. É proteção de saída HTML aplicada na camada errada — não impede SQL injection. Cada camada tem sua ferramenta.</div>
+    <h4>3. Text formats: quem pode escrever HTML</h4>
+    <p>No Drupal, a permissão de escrever HTML não é do campo — é do <em>text format</em>. Cada formato tem uma lista de filtros e uma lista de papéis autorizados. Um formato liberado para papel não confiável e com o filtro de XSS desligado é uma porta aberta.</p>
+    <p>Três alertas que a prova apresenta como cenário de configuração, não de código:</p>
+    <ul class="plain">
+      <li>Formato <em>Full HTML</em> disponível para usuários autenticados comuns.</li>
+      <li>Filtro "Limit allowed HTML tags" desativado em um formato de uso público.</li>
+      <li>Permissões como <em>administer filters</em> ou <em>administer users</em> concedidas a papel não administrativo — são equivalentes a acesso total ao site.</li>
+    </ul>
+<pre><code><span class="c">// texto que o usuário escreveu com um text format:
+// renderize PELO format, que aplica os filtros configurados</span>
+$build['corpo'] = [
+  '#type' =&gt; 'processed_text',
+  '#text' =&gt; $node-&gt;body-&gt;value,
+  '#format' =&gt; $node-&gt;body-&gt;format,   <span class="c">// ← o filtro vem daqui</span>
+];
+
+<span class="c">// ❌ ignorar o format e jogar no markup: nenhum filtro roda</span>
+$build['corpo'] = ['#markup' =&gt; $node-&gt;body-&gt;value];
+</code></pre>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m5-b4"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Acesso, CSRF, arquivos e atualizações</h3>
+    <p class="sub">O resto do domínio de segurança: o que proteger além da saída de texto.</p>
+
+    <h4>1. Declarar e checar permissões</h4>
+<pre><code><span class="c"># cert_lab.permissions.yml</span>
+'administer cert lab':
+  title: 'Administrar o Cert Lab'
+  restrict access: TRUE     <span class="c"># marca a permissão como equivalente a admin</span>
+</code></pre>
+<pre><code>$account-&gt;hasPermission('administer cert lab');   <span class="c">// em código</span>
+$node-&gt;access('update', $account);                <span class="c">// acesso a uma entidade</span>
+</code></pre>
+    <p>A checagem principal, porém, mora na rota — <code>_permission</code> ou <code>_entity_access</code>. Código que checa depois é a resposta errada, como visto no módulo 1.</p>
+
+    <h4>2. Os pontos restantes</h4>
+    <ul class="plain">
+      <li><strong>Permissões:</strong> declare em <code>cert_lab.permissions.yml</code>; marque <code>restrict access: TRUE</code> quando a permissão dá poder equivalente a admin. Verifique no roteamento, não no controller.</li>
+      <li><strong>CSRF:</strong> qualquer rota que <em>altera estado</em> por GET (deletar, publicar por link) precisa de <code>_csrf_token: 'TRUE'</code> na rota e do token no link. Formulários do Form API já vêm protegidos.</li>
+      <li><strong>Uploads:</strong> valide extensão com <code>file_validate_extensions</code>, guarde em <code>private://</code> quando o arquivo é sensível, e nunca confie no MIME enviado pelo cliente.</li>
+      <li><strong>Segredos:</strong> credenciais em <code>settings.php</code> ou variável de ambiente, fora do Git e fora da config exportada.</li>
+    </ul>
+<pre><code><span class="c"># rota que altera estado por GET: exige token</span>
+cert_lab.despublicar:
+  path: '/cert-lab/despublicar/{node}'
+  defaults:
+    _controller: '\Drupal\cert_lab\Controller\CertLabController::despublicar'
+  requirements:
+    _permission: 'administer nodes'
+    _csrf_token: 'TRUE'          <span class="c"># sem isto, um &lt;img src&gt; em outro site dispara a ação</span>
+</code></pre>
+<pre><code><span class="c">// o link precisa carregar o token; Url::fromRoute() cuida disso</span>
+$link = Link::createFromRoute($this-&gt;t('Despublicar'), 'cert_lab.despublicar', ['node' =&gt; 7]);
+</code></pre>
+<pre><code><span class="c">// upload: valide extensão e escolha o esquema conforme a sensibilidade</span>
+$form['anexo'] = [
+  '#type' =&gt; 'managed_file',
+  '#upload_location' =&gt; 'private://contratos/',   <span class="c">// public:// para arquivo público</span>
+  '#upload_validators' =&gt; [
+    'file_validate_extensions' =&gt; ['pdf doc docx'],
+    'file_validate_size' =&gt; [5 * 1024 * 1024],
+  ],
+];
+</code></pre>
+<pre><code><span class="c">// segredo: fora do Git e fora da config exportada</span>
+<span class="c">// settings.php (ignorado pelo Git) ou variável de ambiente</span>
+$settings['cert_lab_api_key'] = getenv('CERT_LAB_API_KEY');
+</code></pre>
+    <ul class="plain">
+      <li><strong>Advisories:</strong> releases de segurança saem em janelas agendadas (quartas), com advisory público em <a href="https://www.drupal.org/security">drupal.org/security</a>, e não introduzem quebra de API dentro do minor — por isso atualizar patch release é rotina segura, não projeto.</li>
+    </ul>
+    <div class="note"><b>Cenário recorrente:</b> "módulo contrib sem manutenção e com advisory aberto". A resposta alinhada é avaliar substituição ou assumir a manutenção via issue queue — não fazer fork silencioso nem editar em <code>contrib</code>.</div>
+
+    <h4>3. Checklist de revisão de código custom</h4>
+    <p>Passe este filtro mentalmente em qualquer trecho que a prova apresentar. Um "não" é a vulnerabilidade da questão:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Pergunta</th><th>Sinal de problema</th></tr></thead>
+      <tbody>
+        <tr><td>Valor de usuário chega ao SQL?</td><td>Concatenação em vez de placeholder</td></tr>
+        <tr><td>Valor de usuário chega ao HTML?</td><td><code>#markup</code> ou <code>|raw</code> em vez de <code>#plain_text</code></td></tr>
+        <tr><td>A rota altera estado por GET?</td><td>Falta <code>_csrf_token</code></td></tr>
+        <tr><td>A EntityQuery tem <code>accessCheck</code>?</td><td><code>FALSE</code> sem justificativa</td></tr>
+        <tr><td>Campo escondido no form alter</td><td>CSS ou <code>#disabled</code> em vez de <code>#access</code></td></tr>
+        <tr><td>Segredo no código</td><td>Credencial em config exportada ou no Git</td></tr>
+        <tr><td>Upload de arquivo</td><td>Extensão não validada, ou <code>public://</code> para dado sensível</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m5-b5"> marcar como estudado</label></div>
+  </article>
+
+  <div class="lab">
+    <h4>Laboratório 5</h4>
+    <p>Duas metades. <strong>Cache:</strong> no block do lab 3, declare <code>node_list</code> e <code>user.roles</code>; publique um artigo e prove pelo header <code>X-Drupal-Cache-Tags</code> que a listagem invalidou. <strong>Segurança:</strong> exiba um valor de usuário com <code>#markup</code>, salve <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> e veja o XSS passar; troque para <code>#plain_text</code> e veja fechar.</p>
+    <p style="font-size:0.9rem"><strong>Critério de pronto:</strong> você consegue explicar em voz alta por que <code>max-age: 0</code> resolveria o sintoma e ainda assim seria a resposta errada.</p>
+    <label class="chk"><input type="checkbox" data-c="m5-lab"> laboratório concluído</label>
+  </div>
+
+  <div class="quiz" data-quiz="5"></div>
+</section>
+
+<!-- ============ MÓDULO 6 ============ -->
+<section class="mod" id="m6" data-mod="6">
+  <div class="mod-head">
+    <p class="eyebrow">Módulo 6 · Domínios 3.0 e 7.0</p>
+    <h2>Debug, testes e comunidade</h2>
+    <div class="mod-meta"><span>Peso na prova <b>14%</b></span><span>≈ <b>8</b> questões</span><span>Estudo <b>6h</b></span></div>
+  </div>
+
+  <article class="block">
+    <h3>Ferramentas de debug</h3>
+    <p class="sub">O método de diagnóstico que a prova assume: ler o erro antes de mexer no código.</p>
+
+    <h4>1. Preparar o ambiente de dev</h4>
+    <p>Metade dos problemas de "não sei o que está acontecendo" é ambiente que esconde a informação. Um dev bem configurado tem:</p>
+<pre><code><span class="c">// sites/default/settings.local.php</span>
+$config['system.logging']['error_level'] = 'verbose';   <span class="c">// erro completo na tela</span>
+$settings['cache']['bins']['render'] = 'cache.backend.null';
+$settings['cache']['bins']['page'] = 'cache.backend.null';
+</code></pre>
+<pre><code><span class="c"># sites/development.services.yml</span>
+parameters:
+  twig.config:
+    debug: true          <span class="c"># comentários com sugestões de template</span>
+    auto_reload: true    <span class="c"># recompila o Twig a cada alteração</span>
+</code></pre>
+    <p>Tudo isso é <strong>só dev</strong>. Em produção, cada uma dessas linhas é um problema de performance ou de vazamento de informação — e a prova pergunta exatamente isso, como cenário de configuração.</p>
+
+    <h4>2. Sintoma → primeiro passo</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Sintoma</th><th>Primeiro passo</th></tr></thead>
+      <tbody>
+        <tr><td>White screen of death</td><td>Ligar <code>$config['system.logging']['error_level'] = 'verbose'</code> em <code>settings.local.php</code> e ler o log do PHP</td></tr>
+        <tr><td>Mudança em código não aparece</td><td><code>drush cr</code> — cache de plugin, de rota e de theme registry</td></tr>
+        <tr><td>Rota nova dá 404</td><td><code>drush cr</code> e <code>drush route</code>; conferir indentação do YAML</td></tr>
+        <tr><td>Erro intermitente em produção</td><td><code>drush watchdog:show --severity=Error</code></td></tr>
+        <tr><td>Preciso ver o valor de uma variável</td><td>Xdebug com breakpoint. Devel/Kint só como plano B</td></tr>
+        <tr><td>Config import falha</td><td><code>drush cim --preview=diff</code>; conferir UUID do site</td></tr>
+      </tbody>
+    </table></div>
+    <p>Para logar do seu código, injete o canal de logger em vez de escrever em arquivo:</p>
+<pre><code>$this-&gt;loggerFactory-&gt;get('cert_lab')-&gt;error('Falha ao importar @id', ['@id' =&gt; $id]);
+</code></pre>
+    <div class="note"><b>Preferência da prova:</b> Xdebug &gt; <code>dump()</code>/Kint &gt; <code>print_r()</code>. E nunca deixar código de debug no commit — o scope guard da vida real e o domínio 7 batem nisso.</div>
+
+    <h4>3. Comandos drush que resolvem a maioria dos casos</h4>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Comando</th><th>Para quê</th></tr></thead>
+      <tbody>
+        <tr><td><code>drush cr</code></td><td>Reconstrói todos os caches. O primeiro reflexo</td></tr>
+        <tr><td><code>drush watchdog:show --severity=Error</code></td><td>Últimos erros registrados</td></tr>
+        <tr><td><code>drush status</code></td><td>Versões, caminhos, conexão com o banco</td></tr>
+        <tr><td><code>drush route --path=/algo</code></td><td>Qual rota atende aquele path</td></tr>
+        <tr><td><code>drush cim --preview=diff</code></td><td>O que o config import vai mudar, antes de aplicar</td></tr>
+        <tr><td><code>drush updatedb</code></td><td>Roda os <code>hook_update_N</code> pendentes</td></tr>
+        <tr><td><code>drush php:eval "..."</code></td><td>Executa PHP no contexto do site</td></tr>
+        <tr><td><code>drush user:login</code></td><td>Link de acesso quando você perdeu a senha</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m6-b1"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Escrever um teste</h3>
+    <p class="sub">Como um teste do Drupal se parece, e o que cada base te dá.</p>
+<pre><code>class CertLabHelperTest extends KernelTestBase {
+
+  protected static $modules = ['system', 'node', 'user', 'field', 'cert_lab'];
+
+  protected function setUp(): void {
+    parent::setUp();
+    $this-&gt;installEntitySchema('node');
+    $this-&gt;installConfig(['cert_lab']);
+  }
+
+  public function testListaRespeitaLimite(): void {
+    $helper = $this-&gt;container-&gt;get('cert_lab.helper');
+    $this-&gt;assertCount(5, $helper-&gt;ultimos());
+  }
+}
+</code></pre>
+    <p>Três detalhes do Kernel test que a prova cobra: <code>$modules</code> lista o que será instalado (e dependências não vêm de graça); <code>installEntitySchema()</code> cria as tabelas da entidade; e <code>$this->container</code> é o container real, então você pega services de verdade.</p>
+    <p>Rodar: <code>vendor/bin/phpunit -c web/core modules/custom/cert_lab</code>.</p>
+
+    <h4>Como é um Functional test</h4>
+<pre><code>class CertLabPaginaTest extends BrowserTestBase {
+
+  protected $defaultTheme = 'stark';
+  protected static $modules = ['cert_lab', 'node'];
+
+  public function testAcessoNegadoSemPermissao(): void {
+    $this-&gt;drupalLogin($this-&gt;drupalCreateUser([]));      <span class="c">// usuário sem permissão</span>
+    $this-&gt;drupalGet('/cert-lab/report/1');
+    $this-&gt;assertSession()-&gt;statusCodeEquals(403);
+
+    $this-&gt;drupalLogin($this-&gt;drupalCreateUser(['access content']));
+    $this-&gt;drupalGet('/cert-lab/report/1');
+    $this-&gt;assertSession()-&gt;pageTextContains('Relatório');
+  }
+}
+</code></pre>
+    <p><code>drupalGet()</code>, <code>drupalLogin()</code>, <code>submitForm()</code> e <code>assertSession()</code> são o vocabulário básico. Teste de permissão é o exemplo mais citado de algo que só um Functional cobre bem.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m6-b2"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Coding standards</h3>
+    <p class="sub">O que a comunidade espera do seu código, e a ferramenta que verifica isso.</p>
+<pre><code>composer require --dev drupal/coder
+vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom/cert_lab
+vendor/bin/phpcbf --standard=Drupal web/modules/custom/cert_lab   <span class="c"># corrige o automatizável</span>
+</code></pre>
+    <p>Dois sniffs, dois propósitos:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Padrão</th><th>Verifica</th><th>Exemplo do que acusa</th></tr></thead>
+      <tbody>
+        <tr><td><code>Drupal</code></td><td>Formatação e documentação</td><td>Indentação de 2 espaços, docblock em toda função, ordem alfabética dos <code>use</code>, linha em branco no fim do arquivo</td></tr>
+        <tr><td><code>DrupalPractice</code></td><td>Boa prática</td><td><code>\Drupal::</code> dentro de classe, <code>t()</code> com variável concatenada, uso de <code>#markup</code> com dado de usuário</td></tr>
+      </tbody>
+    </table></div>
+    <p>As convenções que mais aparecem em questão de código: 2 espaços de indentação (nunca tab), chaves na mesma linha, <code>snake_case</code> para funções e nomes de módulo, <code>CamelCase</code> para classes, comentário em frase completa terminada em ponto, e nome de módulo como prefixo de toda função em <code>.module</code>.</p>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m6-b3"> marcar como estudado</label></div>
+  </article>
+
+  <article class="block">
+    <h3>Trabalhar com a comunidade</h3>
+    <p class="sub">O domínio mais fácil de acertar: quase sempre a resposta é a que devolve trabalho à comunidade.</p>
+    <p>O caminho canônico quando um módulo contrib tem bug: procurar o issue existente na fila do projeto → se não existir, abrir com passos de reprodução → enviar merge request no GitLab do drupal.org → enquanto não sai release, aplicar por <code>composer-patches</code>.</p>
+    <h4>Versionamento</h4>
+    <p>Semantic versioning: <code>8.x-1.3</code> (formato legado) ou <code>2.1.4</code>. Patch corrige, minor adiciona sem quebrar, major pode quebrar API. O core segue um ciclo de minors previsível; cada minor tem janela de suporte definida, e o D11 exige PHP 8.3+.</p>
+<pre><code>"require": {
+  "drupal/core-recommended": "^11.1",
+  "drupal/pathauto": "^1.12",   <span class="c">// ^ aceita minor e patch: 1.12 → 1.99, nunca 2.0</span>
+  "drupal/token": "~1.13",      <span class="c">// ~ aceita só patch: 1.13 → 1.99 do 1.x</span>
+  "drupal/metatag": "1.26"      <span class="c">// exato: trava. Evite, impede correção de segurança</span>
+}
+</code></pre>
+<pre><code><span class="c"># cert_lab.info.yml — declarar compatibilidade do seu módulo</span>
+name: Cert Lab
+type: module
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:node
+  - pathauto:pathauto
+</code></pre>
+    <h4>Avaliar um módulo contrib antes de adotar</h4>
+    <ul class="plain">
+      <li>Tem release estável compatível com sua versão do core?</li>
+      <li>É coberto pela política de segurança (badge de <em>security advisory coverage</em>)?</li>
+      <li>Fila de issues viva? Último commit recente?</li>
+      <li>Quantos sites usam? Quantos mantenedores?</li>
+      <li>Escrever custom sairia mais barato de manter que adotar e ajudar a manter?</li>
+    </ul>
+    <h4>Formas de contribuir que a prova reconhece</h4>
+    <p>Contribuição não é só código — e a prova reflete isso. Reproduzir um bug e documentar os passos, revisar um patch e marcar RTBC, escrever documentação, traduzir a interface, organizar evento e mentorear são todas contribuições legítimas no ecossistema.</p>
+    <div class="note"><b>Padrão de resposta do domínio 7:</b> quando a alternativa fala em contribuir de volta, documentar no issue ou seguir o padrão da comunidade, ela costuma ser a certa. Fork privado e edição em <code>contrib</code> são sempre erradas.</div>
+
+    <div class="block-foot"><label class="chk"><input type="checkbox" data-c="m6-b4"> marcar como estudado</label></div>
+  </article>
+
+  <div class="lab">
+    <h4>Laboratório 6</h4>
+    <p>Escreva um Kernel test para o service do lab 1 e rode o PHPUnit. Depois rode <code>phpcs --standard=Drupal,DrupalPractice</code> no <code>cert_lab</code> inteiro e zere os erros. Por último, encontre um issue real "Novice" na fila de um módulo que você usa e leia a discussão inteira.</p>
+    <p style="font-size:0.9rem"><strong>Critério de pronto:</strong> PHPUnit verde e PHPCS sem erro nos dois padrões.</p>
+    <label class="chk"><input type="checkbox" data-c="m6-lab"> laboratório concluído</label>
+  </div>
+
+  <div class="quiz" data-quiz="6"></div>
+</section>
+
+<footer>
+  <p>Conteúdo baseado no blueprint oficial da Acquia Academy para o exame Drupal 10/11 Back End Specialist, no guia de preparação do Drupalize.Me e em relatos de aprovados. Pesos e formato conferidos em agosto de 2026 — reveja o blueprint oficial antes de comprar o voucher.</p>
+  <p>Progresso salvo apenas neste navegador, via <code>localStorage</code>.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var MODULES = [
+    { id: 1, nome: 'Fundamentos OO e request', curto: 'Fundamentos OO', peso: 16 },
+    { id: 2, nome: 'Entity e Configuration API', curto: 'Entity API', peso: 17 },
+    { id: 3, nome: 'Plugins, eventos e forms', curto: 'Plugins e forms', peso: 16 },
+    { id: 4, nome: 'Render API, Twig, libraries', curto: 'Render e Twig', peso: 10 },
+    { id: 5, nome: 'Cache e segurança', curto: 'Cache e segurança', peso: 27 },
+    { id: 6, nome: 'Debug, testes e comunidade', curto: 'Debug e comunidade', peso: 14 }
+  ];
+
+  var QUIZ = {
+    1: [
+      { q: 'Um controller precisa carregar nodes. Qual a forma correta de obter o storage?',
+        o: ['<code>\\Drupal::entityTypeManager()</code> chamado dentro do método',
+            'Injetar <code>entity_type.manager</code> pelo <code>create()</code> e guardar em propriedade',
+            '<code>new NodeStorage()</code>',
+            '<code>node_load_multiple()</code>'],
+        a: 1,
+        e: 'Em classes é sempre injeção de dependência via <code>create()</code>. O <code>\\Drupal::</code> estático só se justifica em arquivos procedurais (<code>.module</code>, <code>.install</code>), onde não há container. <code>node_load_multiple()</code> foi removido.' },
+      { q: 'Uma rota precisa liberar acesso por lógica própria que depende do usuário e de um parâmetro da URL. O que usar em <code>*.routing.yml</code>?',
+        o: ['<code>_permission</code> com uma permissão nova',
+            '<code>_role</code>',
+            '<code>_custom_access</code> apontando para um método que retorna <code>AccessResult</code>',
+            '<code>_access: \'TRUE\'</code> e checar dentro do controller'],
+        a: 2,
+        e: '<code>_custom_access</code> mantém a decisão dentro do sistema de acesso, então menu links, o router e o cache respeitam. Checar no controller faz o link aparecer para quem não pode entrar, e o 403 só surgir depois do clique.' },
+      { q: 'O que o bloco <code>options.parameters</code> com <code>type: entity:node</code> faz em uma rota <code>/algo/{node}</code>?',
+        o: ['Valida se o valor é numérico',
+            'Faz upcasting: o controller recebe o objeto Node já carregado',
+            'Define a permissão da rota',
+            'Cacheia a resposta por node'],
+        a: 1,
+        e: 'É o parameter upcasting. Sem ele, o método do controller receberia a string crua da URL e teria de carregar a entidade na mão — e um ID inexistente não retornaria 404 automaticamente.' },
+      { q: 'Você precisa aplicar a correção de um issue do drupal.org que ainda não tem release. Qual o caminho correto?',
+        o: ['Editar o arquivo direto em <code>web/modules/contrib</code>',
+            'Fazer um fork privado do módulo',
+            'Declarar o patch em <code>extra.patches</code> do <code>composer.json</code> com <code>cweagans/composer-patches</code>',
+            'Copiar o módulo para <code>custom</code> e corrigir lá'],
+        a: 2,
+        e: 'Patch declarado reaplica sozinho em cada <code>composer install</code> e sobrevive ao próximo update. Editar em <code>contrib</code> perde a correção silenciosamente; fork e cópia para custom criam dívida de manutenção permanente.' },
+      { q: 'Um service precisa ser testado e ele consulta o entity storage. Qual classe base de teste usar?',
+        o: ['<code>UnitTestCase</code>', '<code>KernelTestBase</code>', '<code>BrowserTestBase</code>', '<code>WebDriverTestBase</code>'],
+        a: 1,
+        e: 'Kernel test dá container e banco sem bootstrap completo nem HTTP. Unit é para lógica pura com mocks; Browser para fluxos via navegador; WebDriver só quando o cenário exige JavaScript real. A resposta certa é sempre o teste mais barato que ainda cobre o caso.' },
+      { q: 'Qual destes arquivos <strong>deve</strong> ser commitado no Git de um projeto Drupal com Composer?',
+        o: ['<code>vendor/</code>', '<code>composer.lock</code>', '<code>sites/default/files/</code>', '<code>settings.local.php</code>'],
+        a: 1,
+        e: 'O <code>composer.lock</code> é o que garante que produção instale exatamente as versões testadas. <code>vendor/</code> e <code>web/core</code> são gerados pelo Composer; arquivos de usuário e settings locais nunca entram no repositório.' },
+      { q: 'Qual assinatura de construtor está mais alinhada às práticas do Drupal 11?',
+        o: ['<code>__construct(User $user)</code>',
+            '<code>__construct(AccountInterface $currentUser)</code>',
+            '<code>__construct()</code> e <code>\\Drupal::currentUser()</code> nos métodos',
+            '<code>__construct(array $config)</code> com o usuário dentro do array'],
+        a: 1,
+        e: 'Type hint contra a interface, nunca contra a classe concreta. É o que permite o container trocar a implementação e o que torna a classe testável com um mock. <code>DrupalPractice</code> no PHPCS acusa a variante com <code>\\Drupal::</code>.' }
+    ],
+    2: [
+      { q: 'Qual destes é uma <em>config entity</em>?',
+        o: ['Node', 'Taxonomy term', 'Image style', 'Media'],
+        a: 2,
+        e: 'Config entities vivem no config storage, são exportáveis em YAML e não são fieldable nem revisionáveis: image style, view, node type, view mode, user role. Node, term, media, user e comment são content entities.' },
+      { q: 'Você precisa alterar o valor de um campo toda vez antes de um node ser gravado. Qual hook?',
+        o: ['<code>hook_node_insert()</code>', '<code>hook_entity_presave()</code>', '<code>hook_entity_view()</code>', '<code>hook_node_access()</code>'],
+        a: 1,
+        e: '<code>presave</code> roda antes da escrita, então a alteração persiste. Em <code>insert</code> a entidade já foi gravada — mudar ali exigiria um segundo <code>save()</code>, que redispara os hooks e vira recursão.' },
+      { q: 'Qual código consulta nodes publicados corretamente no Drupal 11?',
+        o: ['<code>$q->condition(\'status\', 1)->execute()</code>',
+            '<code>$q->accessCheck(TRUE)->condition(\'status\', 1)->execute()</code>',
+            '<code>db_query(\'SELECT nid FROM node WHERE status = 1\')</code>',
+            '<code>$q->accessCheck(FALSE)->condition(\'status\', 1)->execute()</code> em uma listagem pública'],
+        a: 1,
+        e: '<code>accessCheck()</code> é obrigatório e explícito desde o Drupal 10 — omitir lança exceção. <code>TRUE</code> em qualquer listagem que o usuário vê; <code>FALSE</code> só em contexto administrativo ou de cron, onde o bypass é deliberado. <code>db_query()</code> foi removido.' },
+      { q: 'Uma página administrativa carrega 500 nodes com um <code>load()</code> dentro do <code>foreach</code> e está lenta. Melhor correção?',
+        o: ['Aumentar o <code>memory_limit</code> do PHP',
+            'Coletar os IDs e chamar <code>loadMultiple()</code> uma vez fora do laço',
+            'Adicionar <code>max-age</code> ao render array',
+            'Mover o processamento para o cron'],
+        a: 1,
+        e: 'É o problema N+1. <code>loadMultiple()</code> resolve em uma query e aproveita a static cache do storage. Cache mascara o sintoma — o primeiro request continua lento, e a tela admin normalmente nem é cacheada.' },
+      { q: 'Para que serve <code>config/schema/cert_lab.schema.yml</code>?',
+        o: ['Definir os valores padrão da configuração na instalação',
+            'Declarar o tipo de cada chave de config, habilitando validação e tradução',
+            'Listar as dependências do módulo',
+            'Configurar o roteamento do formulário de settings'],
+        a: 1,
+        e: 'O schema dá tipo às chaves. Sem ele a config funciona, mas não é validável nem traduzível, e o teste de schema do core acusa. Os valores padrão de instalação ficam em <code>config/install/</code>.' },
+      { q: 'Um site precisa de chaves de API diferentes entre dev e produção. Qual a abordagem correta?',
+        o: ['Commitar YAMLs de config diferentes por ambiente',
+            'Config override em <code>settings.php</code> ou Config Split, com o segredo fora do Git',
+            'Usar <code>getEditable()</code> em um <code>hook_init</code> para ajustar por ambiente',
+            'Desativar o config import em produção'],
+        a: 1,
+        e: 'Override em <code>settings.php</code> (ou Config Split para conjuntos inteiros) mantém uma única config no Git e o segredo fora dela. Config divergente commitada quebra o <code>drush cim</code>; <code>getEditable()</code> em runtime torna o site não reprodutível.' },
+      { q: 'Você quer carregar todos os nodes de um bundle específico. Qual a chamada mais direta?',
+        o: ['<code>$storage->loadByProperties([\'type\' => \'article\'])</code>',
+            '<code>$storage->load(\'article\')</code>',
+            '<code>\\Drupal::entityQuery(\'article\')</code>',
+            '<code>node_load_multiple(NULL, [\'type\' => \'article\'])</code>'],
+        a: 0,
+        e: '<code>loadByProperties()</code> aceita condições sobre campos e devolve as entidades já carregadas. <code>load()</code> espera um ID; <code>entityQuery()</code> recebe o entity type (<code>node</code>), não o bundle; e a função procedural foi removida.' }
+    ],
+    3: [
+      { q: 'Você precisa de um componente reutilizável que o editor posiciona em regiões e configura por instância. O que implementar?',
+        o: ['Um hook no arquivo <code>.module</code>',
+            'Um Block plugin com <code>blockForm()</code> e <code>blockSubmit()</code>',
+            'Um event subscriber',
+            'Uma preprocess function'],
+        a: 1,
+        e: 'Plugin quando existem N implementações intercambiáveis do mesmo contrato e alguém escolhe qual usar — é exatamente o caso de um block. Hook e event servem para <em>reagir</em> a algo que já acontece.' },
+      { q: 'Seu event subscriber está registrado em <code>*.services.yml</code> mas nunca é chamado. Causa mais provável?',
+        o: ['Faltou a tag <code>event_subscriber</code> no service',
+            'Faltou limpar o cache do navegador',
+            'O método <code>getSubscribedEvents()</code> precisa ser não-estático',
+            'Subscribers só funcionam em módulos do core'],
+        a: 0,
+        e: 'Sem a tag <code>event_subscriber</code>, o container registra a classe como um service comum e o dispatcher nunca a descobre. <code>getSubscribedEvents()</code> é obrigatoriamente estático.' },
+      { q: 'Em um <code>hook_form_alter()</code> você precisa impedir que usuários sem permissão editem <em>e submetam</em> um campo. O que usar?',
+        o: ['<code>$form[\'campo\'][\'#attributes\'][\'style\'] = \'display:none\'</code>',
+            '<code>$form[\'campo\'][\'#access\'] = FALSE</code> quando não tem a permissão',
+            '<code>$form[\'campo\'][\'#disabled\'] = TRUE</code>',
+            'Remover o campo com CSS no tema'],
+        a: 1,
+        e: '<code>#access = FALSE</code> remove o elemento do processamento: o valor não é renderizado nem aceito no submit. Esconder por CSS ou <code>#disabled</code> não impede que um POST forjado envie o campo.' },
+      { q: 'Onde colocar uma regra de negócio que rejeita um valor digitado, com mensagem de erro no campo?',
+        o: ['<code>buildForm()</code>', '<code>validateForm()</code> com <code>setErrorByName()</code>', '<code>submitForm()</code>', '<code>hook_entity_presave()</code>'],
+        a: 1,
+        e: '<code>validateForm()</code> é a fase própria, e <code>setErrorByName()</code> ancora a mensagem no campo certo e impede o submit. <code>submitForm()</code> só roda se a validação passou — validar ali é tarde demais.' },
+      { q: 'O que um callback AJAX do Form API deve retornar?',
+        o: ['Uma string de HTML montada no PHP',
+            'Um elemento do formulário (ou um <code>AjaxResponse</code> com comandos)',
+            'Um <code>JsonResponse</code> com os dados brutos',
+            '<code>TRUE</code> em caso de sucesso'],
+        a: 1,
+        e: 'O callback devolve o pedaço do render array do formulário, que o Drupal substitui no <code>wrapper</code> indicado. Assim libraries, estados e cacheability continuam corretos — HTML solto quebra tudo isso.' },
+      { q: 'Você quer mostrar um campo apenas quando outro select tem determinado valor, sem escrever JavaScript. O que usar?',
+        o: ['<code>#ajax</code>', '<code>#states</code>', '<code>#access</code>', 'Um <code>Drupal.behaviors</code> custom'],
+        a: 1,
+        e: '<code>#states</code> resolve visibilidade condicional no cliente, declarativamente. <code>#ajax</code> é para quando o servidor precisa recalcular opções; <code>#access</code> é decisão de servidor e não reage a interação.' },
+      { q: 'No Drupal 11, como um plugin de bloco é descoberto?',
+        o: ['Por uma entrada em <code>*.services.yml</code>',
+            'Pelo atributo PHP <code>#[Block(...)]</code> na classe em <code>src/Plugin/Block/</code>',
+            'Por <code>hook_block_info()</code>',
+            'Por um arquivo YAML <code>*.blocks.yml</code>'],
+        a: 1,
+        e: 'O Drupal 11 usa atributos PHP para discovery de plugin, substituindo as anotações em docblock. O local do arquivo (<code>src/Plugin/Block/</code>) é o que diz ao plugin manager onde procurar. <code>hook_block_info()</code> é do Drupal 7.' }
+    ],
+    4: [
+      { q: 'Você precisa exibir um nome digitado pelo usuário em um render array. Qual chave usar?',
+        o: ['<code>#markup</code> com o valor cru', '<code>#plain_text</code>', '<code>#printed</code>', '<code>#raw</code>'],
+        a: 1,
+        e: '<code>#plain_text</code> escapa integralmente. <code>#markup</code> passa por <code>Xss::filterAdmin()</code> e ainda permite tags — com input de usuário, é vetor de XSS. <code>#printed</code> é flag interna do renderer e <code>#raw</code> não existe.' },
+      { q: 'Qual a forma correta de anexar CSS e JS a um render array?',
+        o: ['<code>drupal_add_js()</code>',
+            '<code>$build[\'#attached\'][\'library\'][] = \'cert_lab/lista\';</code>',
+            'Uma tag <code>&lt;script&gt;</code> inline no template Twig',
+            'Declarar os arquivos no <code>*.info.yml</code> do módulo'],
+        a: 1,
+        e: 'A biblioteca é declarada em <code>*.libraries.yml</code> e anexada por <code>#attached</code> (ou <code>attach_library()</code> no Twig). Isso preserva dependências, ordem, agregação e cacheability. <code>drupal_add_js()</code> não existe mais.' },
+      { q: 'Um JavaScript custom precisa rodar também em conteúdo trazido por AJAX, sem inicializar duas vezes o mesmo elemento. Como escrever?',
+        o: ['<code>document.addEventListener(\'DOMContentLoaded\', ...)</code>',
+            '<code>Drupal.behaviors.x = { attach(context) { once(\'x\', \'.sel\', context).forEach(...) } }</code>',
+            '<code>$(document).ready(...)</code>',
+            'Um <code>setInterval</code> que reprocessa a página'],
+        a: 1,
+        e: '<code>Drupal.behaviors</code> é reexecutado a cada novo <code>context</code> entregue por AJAX, e <code>once()</code> (biblioteca <code>core/once</code>, que substituiu <code>jQuery.once</code>) garante uma inicialização por elemento.' },
+      { q: 'Você quer um template diferente para nodes de um bundle específico. Qual o mecanismo previsto?',
+        o: ['Theme suggestion, via convenção ou <code>hook_theme_suggestions_HOOK_alter()</code>',
+            'Registrar um theme hook novo em <code>hook_theme()</code>',
+            'Um <code>{% if %}</code> dentro de <code>node.html.twig</code>',
+            'Criar obrigatoriamente um novo view mode'],
+        a: 0,
+        e: 'Theme suggestions especializam um template existente — <code>node--article.html.twig</code>. <code>hook_theme()</code> serve para registrar um theme hook <em>novo</em>, não para variar um que já existe.' },
+      { q: 'Quando <code>|raw</code> é aceitável em um template Twig do Drupal?',
+        o: ['Sempre que o HTML estiver aparecendo como texto na tela',
+            'Em qualquer campo de texto formatado',
+            'Praticamente nunca — só em markup já sanitizado e sob controle do desenvolvedor',
+            'Para qualquer valor vindo de um campo de entidade'],
+        a: 2,
+        e: '<code>|raw</code> desliga o autoescape e é origem clássica de XSS. Campo de texto formatado já vem renderizado e sanitizado pelo text format quando você imprime <code>content.field_x</code> — não precisa de <code>|raw</code>.' },
+      { q: 'Como levar um valor calculado no PHP até o seu JavaScript?',
+        o: ['<code>#attached[\'drupalSettings\']</code> e ler em <code>drupalSettings</code> no JS',
+            'Concatenar em um atributo <code>data-</code> montando a string no PHP',
+            'Uma variável global impressa em <code>html.html.twig</code>',
+            'Um cookie gravado no hook de request'],
+        a: 0,
+        e: '<code>drupalSettings</code> é o canal oficial: serializa com escape correto, respeita cacheability e não exige montar HTML na mão. Depende da library <code>core/drupalSettings</code>.' }
+    ],
+    5: [
+      { q: 'Um block lista os 5 nodes mais recentes e não atualiza quando um artigo novo é publicado. Qual a correção?',
+        o: ['Definir <code>\'#cache\' => [\'max-age\' => 0]</code>',
+            'Adicionar a cache tag <code>node_list</code> em <code>#cache[\'tags\']</code>',
+            'Desligar o Internal Page Cache',
+            'Rodar <code>drush cr</code> no cron'],
+        a: 1,
+        e: '<code>node_list</code> é invalidada automaticamente em qualquer save ou delete de node. <code>max-age: 0</code> resolve o sintoma e destrói a performance — é exatamente a armadilha que a prova monta.' },
+      { q: 'O conteúdo de um block muda conforme o papel do usuário logado. O que declarar?',
+        o: ['A cache tag <code>user</code>',
+            'O cache context <code>user.roles</code>',
+            '<code>max-age: 0</code>',
+            'Nada, o Drupal detecta sozinho'],
+        a: 1,
+        e: 'Context = o resultado <em>varia por</em> uma dimensão da request. Tag = <em>depende de</em> dados que podem mudar. Max-age = validade no tempo. Prefira <code>user.roles</code> a <code>user</code>: gera três ou quatro variações em vez de uma por pessoa.' },
+      { q: 'Qual a forma preferida de declarar que um render array depende de uma entidade carregada?',
+        o: ['Escrever as tags à mão em <code>#cache[\'tags\']</code>',
+            '<code>CacheableMetadata::createFromRenderArray()</code> + <code>addCacheableDependency($node)</code> + <code>applyTo()</code>',
+            'Chamar <code>Cache::invalidateTags()</code> ao renderizar',
+            'Definir <code>max-age</code> igual ao tempo de edição típico'],
+        a: 1,
+        e: '<code>addCacheableDependency()</code> pega tags, contexts <em>e</em> max-age do próprio objeto, que sabe declarar suas dependências (<code>CacheableDependencyInterface</code>). Escrever à mão funciona, mas esquece contexts e max-age.' },
+      { q: 'Uma saudação personalizada obriga a página inteira a variar por usuário. Qual a solução idiomática?',
+        o: ['<code>max-age: 0</code> na página',
+            'Um <code>#lazy_builder</code> com <code>#create_placeholder</code> para isolar o trecho dinâmico',
+            'Carregar a saudação por uma chamada jQuery no <code>ready</code>',
+            'Remover o Dynamic Page Cache'],
+        a: 1,
+        e: 'O lazy builder isola o pedaço dinâmico em um placeholder: o resto da página permanece cacheável e o BigPipe entrega o trecho depois, em streaming. Os argumentos do lazy builder precisam ser escalares.' },
+      { q: 'Uma query dinâmica precisa filtrar por um valor vindo de um formulário. Como escrever?',
+        o: ['Concatenar o valor na string SQL',
+            'Usar <code>condition()</code> do Database API, ou um placeholder <code>:param</code>',
+            'Passar o valor por <code>addslashes()</code> antes de concatenar',
+            'Passar o valor por <code>htmlspecialchars()</code> antes de concatenar'],
+        a: 1,
+        e: 'O Database API faz o binding com segurança. <code>htmlspecialchars()</code> é proteção de <em>saída HTML</em> — aplicá-la contra SQL injection é misturar camadas, e é o distrator recorrente desta questão.' },
+      { q: 'Uma rota permite despublicar um node por GET a partir de um link administrativo. O que ela precisa?',
+        o: ['Nada além da permissão correta',
+            '<code>_csrf_token: \'TRUE\'</code> nos requirements, com o token no link',
+            'Ser convertida para <code>#markup</code>',
+            'Um <code>max-age</code> baixo'],
+        a: 1,
+        e: 'Qualquer rota que altera estado por GET precisa de token CSRF, senão um link ou imagem em outro site dispara a ação com a sessão da vítima. Formulários do Form API já vêm com a proteção embutida.' },
+      { q: 'Qual configuração indica um site de produção corretamente ajustado?',
+        o: ['Twig debug ligado e agregação de CSS/JS desligada',
+            'Agregação de CSS/JS ligada, Twig debug e render cache desligados apenas em dev',
+            'Cron rodando dentro do request do visitante',
+            '<code>error_level</code> em <code>verbose</code> para facilitar suporte'],
+        a: 1,
+        e: 'Produção agrega assets e mantém o cache ligado; Twig debug e cache desligado pertencem a dev. Cron no request do visitante degrada a experiência, e <code>verbose</code> em produção vaza caminhos e stack traces.' },
+      { q: 'Um módulo contrib que você usa recebeu um security advisory e não tem mantenedor ativo. Resposta alinhada às práticas do Drupal?',
+        o: ['Fazer um fork privado e seguir a vida',
+            'Editar o arquivo vulnerável direto em <code>web/modules/contrib</code>',
+            'Avaliar substituição, ou assumir a manutenção pela issue queue e aplicar a correção por patch declarado',
+            'Ignorar, já que advisories raramente são explorados'],
+        a: 2,
+        e: 'O caminho da comunidade: tratar na fila pública do projeto, contribuir a correção e, enquanto não sai release, aplicar por <code>composer-patches</code>. Fork silencioso e edição em <code>contrib</code> perdem a correção no próximo update.' }
+    ],
+    6: [
+      { q: 'Você alterou o <code>*.routing.yml</code> e a rota nova retorna 404. Primeiro passo?',
+        o: ['Reinstalar o módulo', '<code>drush cr</code> e conferir a indentação do YAML', 'Aumentar o <code>memory_limit</code>', 'Rodar <code>drush cim</code>'],
+        a: 1,
+        e: 'Rotas são cacheadas. <code>drush cr</code> reconstrói o router; YAML mal indentado é a outra causa comum, e <code>drush route</code> confirma se a rota chegou a ser registrada.' },
+      { q: 'Qual a forma correta de registrar um erro a partir do seu módulo?',
+        o: ['<code>error_log()</code> direto no arquivo do PHP',
+            'Injetar o logger channel e chamar <code>->error()</code> com placeholders',
+            '<code>print_r()</code> na tela',
+            '<code>dpm()</code> do Devel em produção'],
+        a: 1,
+        e: 'O logger channel entrega ao sistema de log do site (watchdog e qualquer backend configurado), com placeholders escapados. Devel e <code>print_r()</code> são ferramentas de dev e nunca devem chegar a produção.' },
+      { q: 'Qual sniff do PHPCS acusa <code>\\Drupal::service()</code> usado dentro de uma classe?',
+        o: ['<code>Drupal</code>', '<code>DrupalPractice</code>', '<code>PSR2</code>', '<code>Squiz</code>'],
+        a: 1,
+        e: '<code>Drupal</code> cobre formatação e documentação; <code>DrupalPractice</code> cobre boa prática — é ele que aponta o service estático em classe, <code>t()</code> com variável concatenada e afins. Rode os dois.' },
+      { q: 'Você encontrou um bug em um módulo contrib. Qual o caminho alinhado à comunidade?',
+        o: ['Fork privado do módulo',
+            'Copiar o módulo para <code>custom</code> e corrigir lá',
+            'Procurar/abrir o issue no drupal.org, enviar merge request, e aplicar por patch declarado até sair a release',
+            'Editar direto em <code>web/modules/contrib</code>'],
+        a: 2,
+        e: 'Issue queue, merge request e patch versionado no <code>composer.json</code> — a correção volta para a comunidade e o seu site fica reprodutível. Fork e edição em vendor são armadilhas de manutenção.' },
+      { q: 'Um release de segurança do core sai numa quarta-feira. O que o processo do Drupal garante?',
+        o: ['Que existe release de segurança toda quarta',
+            'Que os patches saem em janelas agendadas, com advisory público, sem quebra de API dentro do minor',
+            'Que apenas a major mais recente recebe correção',
+            'Que os advisories permanecem privados por 90 dias'],
+        a: 1,
+        e: 'Janela previsível, advisory público em drupal.org/security e compatibilidade preservada dentro do minor — por isso aplicar patch release é rotina de manutenção, não projeto.' },
+      { q: 'Ao avaliar um módulo contrib para adoção, qual sinal pesa mais?',
+        o: ['Quantidade de estrelas em um repositório espelho no GitHub',
+            'Release estável compatível, cobertura da política de segurança e fila de issues viva',
+            'Ter o menor número de dependências possível',
+            'Ter sido criado recentemente'],
+        a: 1,
+        e: 'Os três sinais que a comunidade usa: compatibilidade com sua versão do core, badge de security advisory coverage, e sinais de manutenção ativa. Novidade e contagem de estrelas não dizem nada sobre risco de manutenção.' }
+    ]
+  };
+
+  var KEY = 'acquia-bes-progress';
+  var state = { v: 1, checks: {}, scores: {} };
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      var p = JSON.parse(raw);
+      if (p && p.checks) state.checks = p.checks;
+      if (p && p.scores) state.scores = p.scores;
+    } catch (e) { /* progresso simplesmente começa do zero */ }
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function checksOf(mod) {
+    return Array.prototype.slice.call(
+      document.querySelectorAll('#m' + mod + ' input[data-c]')
+    );
+  }
+  function studyPct(mod) {
+    var all = checksOf(mod);
+    if (!all.length) return 0;
+    var done = all.filter(function (i) { return state.checks[i.dataset.c]; }).length;
+    return done / all.length;
+  }
+  function modPct(mod) {
+    return studyPct(mod) * 0.6 + (state.scores['m' + mod] || 0) * 0.4;
+  }
+  function overall() {
+    var t = 0;
+    MODULES.forEach(function (m) { t += modPct(m.id) * m.peso; });
+    return t / 100;
+  }
+
+  var C = 2 * Math.PI * 16.5;
+  function setRing(svg, pct) {
+    var v = svg.querySelector('.val');
+    // linecap arredondado desenharia um ponto visível em 0%
+    v.style.opacity = pct > 0 ? '1' : '0';
+    v.setAttribute('stroke-dasharray', (pct * C).toFixed(2) + ' ' + C.toFixed(2));
+    svg.querySelector('text').textContent = Math.round(pct * 100) + '%';
+  }
+
+  function buildNav() {
+    var ol = document.getElementById('nav');
+    MODULES.forEach(function (m) {
+      var li = document.createElement('li');
+      li.innerHTML = '<a href="#m' + m.id + '" data-nav="' + m.id + '">' +
+        '<svg class="ring" viewBox="0 0 40 40" aria-hidden="true">' +
+          '<circle class="track" cx="20" cy="20" r="16.5"></circle>' +
+          '<circle class="val" cx="20" cy="20" r="16.5" stroke-dasharray="0 104"></circle>' +
+          '<text x="20" y="23.5">0%</text>' +
+        '</svg>' +
+        '<span class="mlabel">' + m.curto + '<small>Módulo ' + m.id + ' · ' + m.peso + '%</small></span>' +
+      '</a>';
+      ol.appendChild(li);
+    });
+  }
+
+  function buildBars() {
+    var box = document.getElementById('bars');
+    MODULES.forEach(function (m) {
+      var row = document.createElement('div');
+      row.className = 'barrow';
+      row.innerHTML = '<span class="nm">' + m.id + '. ' + m.curto + '</span>' +
+        '<span class="track2"><i data-bar="' + m.id + '" style="width:0%"></i></span>' +
+        '<span class="pc" data-pc="' + m.id + '">0%</span>';
+      box.appendChild(row);
+    });
+  }
+
+  function render() {
+    var lowest = 1, anyScore = false;
+    MODULES.forEach(function (m) {
+      var p = modPct(m.id);
+      document.querySelector('[data-bar="' + m.id + '"]').style.width = (p * 100) + '%';
+      document.querySelector('[data-pc="' + m.id + '"]').textContent = Math.round(p * 100) + '%';
+      var navA = document.querySelector('[data-nav="' + m.id + '"]');
+      if (navA) setRing(navA.querySelector('.ring'), p);
+      var s = state.scores['m' + m.id];
+      if (s === undefined) { lowest = 0; } else { anyScore = true; if (s < lowest) lowest = s; }
+    });
+
+    var o = overall();
+    setRing(document.getElementById('ringAll'), o);
+
+    var ready = o >= 0.85 && anyScore && lowest >= 0.8;
+    var badge = document.getElementById('readyBadge');
+    badge.className = 'badge' + (ready ? ' on' : '');
+    badge.textContent = ready ? 'Pronto para agendar a prova' : 'Ainda não pronto para agendar';
+
+    var msg = document.getElementById('dashMsg');
+    if (o === 0) {
+      msg.textContent = 'Comece pelo Módulo 1. Cada bloco estudado e cada simulado feito movem este número.';
+    } else if (ready) {
+      msg.textContent = 'Todos os simulados em 80% ou mais e o preparo geral acima de 85%. É hora de comprar o voucher.';
+    } else if (!anyScore) {
+      msg.textContent = 'Estudo em andamento. Faça o simulado do módulo para converter leitura em fixação.';
+    } else {
+      var pior = MODULES.slice().sort(function (a, b) { return modPct(a.id) - modPct(b.id); })[0];
+      msg.textContent = 'Ponto mais fraco agora: Módulo ' + pior.id + ' — ' + pior.nome + '.';
+    }
+  }
+
+  /* ---------- simulados ---------- */
+  function fmt(s) {
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  function mountQuiz(box) {
+    var mod = parseInt(box.dataset.quiz, 10);
+    var qs = QUIZ[mod];
+    var best = state.scores['m' + mod];
+    var mins = qs.length * 2;
+    box.innerHTML =
+      '<div class="quiz-bar">' +
+        '<div><h4>Simulado do Módulo ' + mod + '</h4>' +
+        '<p class="meta">' + qs.length + ' questões · ' + mins + ' min · formato da prova' +
+        (best !== undefined ? ' · melhor nota <b>' + Math.round(best * 100) + '%</b>' : '') +
+        '</p></div>' +
+        '<button class="btn" data-start>' + (best !== undefined ? 'Refazer simulado' : 'Iniciar simulado') + '</button>' +
+      '</div>';
+    box.querySelector('[data-start]').addEventListener('click', function () { runQuiz(box, mod); });
+  }
+
+  function runQuiz(box, mod) {
+    var qs = QUIZ[mod];
+    var answers = new Array(qs.length).fill(null);
+    var cur = 0;
+    var left = qs.length * 120;
+    var timerEl, tick;
+
+    box.innerHTML =
+      '<div class="quiz-bar">' +
+        '<div><h4>Simulado do Módulo ' + mod + '</h4><p class="meta" data-pos></p></div>' +
+        '<span class="timer" data-timer>' + fmt(left) + '</span>' +
+      '</div>' +
+      '<div class="quiz-body" data-body></div>';
+
+    var body = box.querySelector('[data-body]');
+    timerEl = box.querySelector('[data-timer]');
+
+    tick = setInterval(function () {
+      left--;
+      timerEl.textContent = fmt(left);
+      if (left <= 60) timerEl.classList.add('warn');
+      if (left <= 0) { clearInterval(tick); finish(); }
+    }, 1000);
+
+    function paint() {
+      var q = qs[cur];
+      box.querySelector('[data-pos]').textContent = 'Questão ' + (cur + 1) + ' de ' + qs.length;
+      var dots = qs.map(function (_, i) {
+        return '<i class="' + (answers[i] !== null ? 'done' : '') + (i === cur ? ' cur' : '') + '"></i>';
+      }).join('');
+      body.innerHTML =
+        '<p class="qtext"><span class="stem">Cenário ' + (cur + 1) + '</span>' + q.q + '</p>' +
+        '<div class="opts">' + q.o.map(function (op, i) {
+          return '<label class="opt"><input type="radio" name="q' + cur + '" value="' + i + '"' +
+            (answers[cur] === i ? ' checked' : '') + '><span>' + op + '</span></label>';
+        }).join('') + '</div>' +
+        '<div class="nav-q">' +
+          '<div class="dots">' + dots + '</div>' +
+          '<div class="btnrow">' +
+            '<button class="btn ghost" data-prev' + (cur === 0 ? ' disabled' : '') + '>Anterior</button>' +
+            (cur === qs.length - 1
+              ? '<button class="btn" data-finish>Finalizar</button>'
+              : '<button class="btn" data-next>Próxima</button>') +
+          '</div>' +
+        '</div>';
+
+      body.querySelectorAll('input[type=radio]').forEach(function (r) {
+        r.addEventListener('change', function () {
+          answers[cur] = parseInt(r.value, 10);
+          body.querySelectorAll('.dots i')[cur].classList.add('done');
+        });
+      });
+      var p = body.querySelector('[data-prev]');
+      if (p) p.addEventListener('click', function () { if (cur > 0) { cur--; paint(); } });
+      var n = body.querySelector('[data-next]');
+      if (n) n.addEventListener('click', function () { cur++; paint(); });
+      var f = body.querySelector('[data-finish]');
+      if (f) f.addEventListener('click', function () { clearInterval(tick); finish(); });
+    }
+
+    function finish() {
+      var hits = 0;
+      qs.forEach(function (q, i) { if (answers[i] === q.a) hits++; });
+      var pct = hits / qs.length;
+
+      var prev = state.scores['m' + mod];
+      if (prev === undefined || pct > prev) { state.scores['m' + mod] = pct; save(); }
+      render();
+
+      var pass = pct >= 0.7;
+      box.querySelector('.quiz-bar').innerHTML =
+        '<div><h4>Resultado · Módulo ' + mod + '</h4>' +
+        '<p class="meta">' + (left <= 0 ? 'Tempo esgotado — enviado automaticamente' : 'Enviado por você') + '</p></div>';
+
+      var rev = qs.map(function (q, i) {
+        var ok = answers[i] === q.a;
+        var dado = answers[i] === null ? '<em>em branco</em>' : q.o[answers[i]];
+        return '<div class="rev ' + (ok ? 'ok' : 'no') + '">' +
+          '<span class="tag">' + (ok ? 'Acertou' : 'Errou') + ' · questão ' + (i + 1) + '</span>' +
+          '<p>' + q.q + '</p>' +
+          (ok ? '' : '<p class="why">Sua resposta: ' + dado + '</p>') +
+          '<p class="why"><b>Correta:</b> ' + q.o[q.a] + '</p>' +
+          '<p class="why">' + q.e + '</p>' +
+        '</div>';
+      }).join('');
+
+      body.innerHTML =
+        '<div class="score ' + (pass ? 'pass' : 'fail') + '">' +
+          '<span class="big">' + Math.round(pct * 100) + '%</span>' +
+          '<div><strong>' + hits + ' de ' + qs.length + ' corretas</strong>' +
+          '<p style="font-size:0.9rem;color:var(--ink-2)">' +
+            (pass ? 'Acima da linha de corte de 70% da prova real.'
+                  : 'Abaixo dos 70% exigidos. Releia os blocos ligados às questões erradas e refaça.') +
+          '</p></div>' +
+        '</div>' +
+        '<div class="review">' + rev + '</div>' +
+        '<div class="btnrow"><button class="btn" data-again>Refazer simulado</button>' +
+        '<button class="btn ghost" data-close>Fechar</button></div>';
+
+      body.querySelector('[data-again]').addEventListener('click', function () { runQuiz(box, mod); });
+      body.querySelector('[data-close]').addEventListener('click', function () { mountQuiz(box); });
+    }
+
+    paint();
+  }
+
+  /* ---------- init ---------- */
+  load();
+  buildNav();
+  buildBars();
+
+  document.querySelectorAll('input[data-c]').forEach(function (inp) {
+    inp.checked = !!state.checks[inp.dataset.c];
+    inp.addEventListener('change', function () {
+      if (inp.checked) state.checks[inp.dataset.c] = true;
+      else delete state.checks[inp.dataset.c];
+      save();
+      render();
+    });
+  });
+
+  document.querySelectorAll('[data-quiz]').forEach(mountQuiz);
+  render();
+
+  document.getElementById('reset').addEventListener('click', function () {
+    if (!window.confirm('Apagar todo o progresso salvo neste navegador?')) return;
+    state.checks = {}; state.scores = {};
+    save();
+    document.querySelectorAll('input[data-c]').forEach(function (i) { i.checked = false; });
+    document.querySelectorAll('[data-quiz]').forEach(mountQuiz);
+    render();
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        document.querySelectorAll('[data-nav]').forEach(function (a) { a.classList.remove('active'); });
+        var a = document.querySelector('[data-nav="' + en.target.dataset.mod + '"]');
+        if (a) a.classList.add('active');
+      });
+    }, { rootMargin: '-10% 0px -70% 0px' });
+    document.querySelectorAll('section.mod').forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+
+</body></html>
